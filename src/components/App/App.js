@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-// import Header from "../Header/Header";
+import Header from "../Header/Header";
 import Main from "../Main/Main";
 // import Movies from "../Movies/Movies";
 // import SavedMovies from '../SavedMovies/SavedMovies';
@@ -14,7 +14,7 @@ import "./App.css";
 function App() {
   return (
     <div className="app">
-      {/* <Header /> */}
+      <Header />
       <Routes>
         {/* <Route path="/sign-up" element={<Register />} /> */}
         <Route path="/sign-in" element={<Login />} />
