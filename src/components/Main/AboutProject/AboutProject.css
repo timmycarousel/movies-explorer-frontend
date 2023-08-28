@@ -1,10 +1,37 @@
-.about__deadline {
+.about-project {
+  background-color: #202020;
+  color: #fff;
+  padding-bottom: 101px;
+}
+
+.about-project__container {
+  padding-top: 100px;
+  margin-left: 70px;
+  margin-right: 70px;
+}
+.title {
+  border-bottom: 1px solid #dadada;
+  padding-bottom: 23px;
+}
+
+.title_text {
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  margin: 0;
+  padding: 0;
+}
+
+.about-project__deadline {
+  margin-top: 110px;
   display: flex;
   width: 100%;
   max-height: 36px;
 }
 
-.about__deadline-left {
+.about-project__deadline-left {
   flex: 1;
   width: 20%;
   background-color: #3ddc84;
@@ -14,28 +41,30 @@
   align-items: center; /* Выравнивание по горизонтали */
 }
 
-.about__deadline-right {
+.about-project__deadline-right {
   flex: 4;
   background-color: #303030;
   display: flex; /* Добавляем flex */
   justify-content: center; /* Выравнивание по вертикали */
   align-items: center; /* Выравнивание по горизонтали */
 }
-.about__deadline-right-text {
+.about-project__deadline-right-text {
   text-decoration: #fff;
 }
 
-.about__deadline-text {
+.about-project__deadline-text {
   align-items: center; /* Выравнивание по вертикали */
   justify-content: center; /* Выравнивание по горизонтали */
 }
 
-.about__deadline-components {
+.about-project__deadline-components {
+  margin-top: 5px;
   display: flex;
   width: 100%;
 }
 
-.about__deadline-left-backend {
+.about-project__deadline-left-backend {
+  color: #8b8b8b;
   flex: 1;
   width: 20%;
   display: flex; /* Добавляем flex */
@@ -44,14 +73,39 @@
   align-items: center; /* Выравнивание по горизонтали */
 }
 
-.about__deadline-right-frontend {
+.about-project__deadline-right-frontend {
+  color: #8b8b8b;
   flex: 4;
   display: flex; /* Добавляем flex */
   justify-content: center; /* Выравнивание по вертикали */
   align-items: center; /* Выравнивание по горизонтали */
 }
 
-.about__deadline-text {
+.about-project__deadline-text {
+  margin: 0;
+  padding: 9px 0 9px 0;
   align-items: center; /* Выравнивание по вертикали */
   justify-content: center; /* Выравнивание по горизонтали */
+}
+
+.about-project__subtitle {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(48%, 1fr));
+  gap: 30px;
+}
+
+.about-project__subtitle_title {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.8px;
+}
+
+.about-project__subtitle_text {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
 }

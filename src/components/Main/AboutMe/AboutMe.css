@@ -1,0 +1,10 @@
+.about-me {
+  background-color: #202020;
+  color: #fff;
+}
+
+.about-me__container {
+  padding-top: 110px;
+  margin-left: 70px;
+  margin-right: 70px;
+}
