@@ -1,12 +1,11 @@
 .portfolio__container {
-  padding-top: 100px;
-  padding-bottom: 125px;
+  padding-bottom: 204px;
   margin-left: 70px;
   margin-right: 70px;
 }
 
 .portfolio__title {
-  padding: 0;
+  padding-bottom: 8px;
   margin: 0;
   color: #8b8b8b;
   font-feature-settings: "clig" off, "liga" off;
@@ -17,7 +16,7 @@
 }
 
 .portfolio__sites {
-  padding-top: 30px;
+  padding-top: 23px;
   display: flex;
   flex-direction: column;
 }
@@ -26,16 +25,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0 19px 0;
+  padding: 18px 0 19px 0;
   border-bottom: 1px solid #424242;
 }
 
 .portfolio__site:last-child {
+  padding-top: 21px;
   border-bottom: none;
   padding-bottom: 0;
 }
 
 .portfolio__site-link {
+  padding: 0;
+  margin: 0;
   text-decoration: none;
 }
 
@@ -53,6 +55,7 @@
 }
 
 .portfolio__site-link img {
-  width: 29px;
-  height: 60px;
+  padding: 10px 5px 0 0;
+  margin: 0;
+  width: 19px;
 }
