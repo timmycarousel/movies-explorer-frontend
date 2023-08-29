@@ -1,7 +1,7 @@
 .promo {
   max-width: 1280px;
   width: 100%;
-  height: 524px;
+  height: 519px;
   background-color: #073042;
   display: flex;
   justify-content: center;
@@ -12,9 +12,11 @@
 
 .promo__container {
   text-align: center;
+  margin-top: -34px;
 }
 
 .promo__logo {
+  margin-top: -24px;
   max-width: 320px;
   width: 100%;
   max-height: 320px;

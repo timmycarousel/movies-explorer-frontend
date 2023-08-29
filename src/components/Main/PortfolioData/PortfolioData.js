@@ -1,4 +1,3 @@
-// portfolioData.js
 const portfolioData = [
   {
     title: "Статичный сайт",
