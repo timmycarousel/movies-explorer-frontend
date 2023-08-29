@@ -1,4 +1,5 @@
 import React from "react";
+import photo from "../../../images/photo.jpg";
 
 function AboutMe() {
   return (
@@ -9,9 +10,9 @@ function AboutMe() {
         </div>
         <div className="about-me__block">
           <div className="about-me__block_info">
-            <h3 className="about-me__block_name">Виталий</h3>
+            <h3 className="about-me__block_name">Тимофей Воронов</h3>
             <h4 className="about-me__block_title">
-              Фронтенд-разработчик, 30 лет
+              Фронтенд-разработчик, 35 лет
             </h4>
             <p className="about-me__block_subtitle">
               Я родился и живу в Саратове, закончил факультет экономики СГУ. У
@@ -20,8 +21,18 @@ function AboutMe() {
               Контур». После того, как прошёл курс по веб-разработке, начал
               заниматься фриланс-заказами и ушёл с постоянной работы.
             </p>
+            <a
+              className="about-me__link"
+              href="https://github.com/timmycarousel"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Github
+            </a>
           </div>
-          <div className="about-me__photo"></div>
+          <div className="about-me__photo">
+            <img src={photo} className="about-me__img" alt="фотография" />
+          </div>
         </div>
       </div>
     </section>

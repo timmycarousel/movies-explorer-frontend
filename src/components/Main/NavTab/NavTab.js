@@ -5,7 +5,7 @@ export default function NavTab() {
     <nav className="nav-tab">
       <ul className="nav-tab__container">
         <li className="nav-tab__list-item">
-          <a className="nav-tab__link" href="#AboutMe">
+          <a className="nav-tab__link" href="#AboutProject">
             О проекте
           </a>
         </li>
@@ -15,7 +15,7 @@ export default function NavTab() {
           </a>
         </li>
         <li className="nav-tab__list-item">
-          <a className="nav-tab__link" href="#Portfolio">
+          <a className="nav-tab__link" href="#AboutMe">
             Студент
           </a>
         </li>

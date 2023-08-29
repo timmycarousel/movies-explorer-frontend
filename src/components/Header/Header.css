@@ -32,6 +32,10 @@
   line-height: 16px;
 }
 
+.header__logo:hover {
+  opacity: 0.8;
+}
+
 .header__btn:hover {
   opacity: 0.8;
 }
