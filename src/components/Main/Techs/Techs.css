@@ -104,3 +104,28 @@
     margin: 0 50px;
   }
 }
+
+@media screen and (max-width: 760px) {
+  .tech__container {
+    margin: 0 18px;
+  }
+
+  .tech__block_title {
+    padding-top: 60px;
+    padding-bottom: 24px;
+    font-size: 30px;
+    line-height: normal;
+    letter-spacing: -1.2px;
+  }
+
+  .tech__block_subtitle {
+    font-size: 11px;
+    line-height: 16px; /* 150% */
+    letter-spacing: -0.44px;
+    padding-bottom: 50px;
+  }
+
+  .tech__list {
+    margin: 0 53px;
+  }
+}

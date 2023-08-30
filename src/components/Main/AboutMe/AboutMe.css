@@ -102,3 +102,41 @@
     line-height: 18px; /* 157.143% */
   }
 }
+
+@media screen and (max-width: 760px) {
+  .about-me__block {
+    margin-top: 60px;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .about-me__img {
+    margin: 0;
+    width: 292px;
+    height: 352px;
+  }
+
+  .about-me__container {
+    padding-top: 51px;
+    margin: 0 14px;
+    padding-bottom: 87px;
+  }
+
+  .about-me__block_name {
+    padding-top: 36px;
+    font-size: 30px;
+    line-height: normal;
+    letter-spacing: -1.2px;
+    padding-bottom: 20px;
+  }
+
+  .about-me__block_title {
+    font-size: 11px;
+    line-height: 16px;
+  }
+  .about-me__block_subtitle {
+    font-size: 11px;
+    padding-bottom: 40px;
+    line-height: 16px;
+  }
+}

@@ -54,3 +54,17 @@
     margin: 0 30px;
   }
 }
+
+@media screen and (max-width: 760px) {
+  .footer__container {
+    margin: 0 10px;
+  }
+
+  .footer__title {
+    font-size: 12px;
+  }
+
+  .footer__block {
+    flex-direction: column-reverse;
+  }
+}
