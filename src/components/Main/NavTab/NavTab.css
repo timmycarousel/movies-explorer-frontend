@@ -30,9 +30,26 @@
   opacity: 0.8;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 824px) {
+  .tech__block_subtitle {
+    font-size: 12px;
+
+    line-height: 18px; /* 150% */
+  }
   .nav-tab__container {
-    gap: 24px;
+    margin-top: 24px;
+    gap: 42px;
+  }
+
+  .nav-tab__link {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .nav-tab__container {
+    margin-top: 24px;
+    gap: 25px;
   }
 
   .nav-tab__link {

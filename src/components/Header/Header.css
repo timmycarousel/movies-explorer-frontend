@@ -54,25 +54,24 @@
   margin-right: -20px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 824px) {
   .header__container {
-    padding: 18px 30px;
+    padding: 22px 30px;
   }
 }
 
-@media screen and (max-width: 425px) {
-  .header {
-    height: 74px;
-  }
+@media screen and (max-width: 760px) {
   .header__container {
-    padding: 18px 14px;
+    padding: 23px 14px;
   }
+
   .header__btn {
-    width: 54px;
-    height: 26px;
+    padding: 4px 12px;
     font-size: 10px;
+    font-weight: 500;
   }
-  .header__nav {
-    gap: 14px;
+
+  .header__btn_register {
+    margin-right: -27px;
   }
 }

@@ -26,7 +26,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 18px 0 19px 0;
-  border-bottom: 1px solid #424242;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .portfolio__site:last-child {
@@ -58,4 +58,20 @@
   padding: 10px 5px 0 0;
   margin: 0;
   width: 19px;
+}
+
+@media screen and (max-width: 824px) {
+  .portfolio__container {
+    margin: 0 50px 0 50px;
+    padding-bottom: 167px;
+  }
+
+  .portfolio__site-text {
+    font-size: 28px;
+    letter-spacing: -1.12px;
+  }
+
+  .portfolio__site {
+    padding: 18px 0 20px 0;
+  }
 }

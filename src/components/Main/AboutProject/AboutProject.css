@@ -25,7 +25,7 @@
 }
 
 .about-project__deadline {
-  margin-top: 96px;
+  margin-top: 111px;
   display: flex;
   width: 100%;
   max-height: 36px;
@@ -36,18 +36,18 @@
   color: #000;
   width: 20%;
   background-color: #3ddc84;
-  display: flex; /* Добавляем flex */
-  flex-direction: column; /* Устанавливаем направление flex-контейнера */
-  justify-content: center; /* Выравнивание по вертикали */
-  align-items: center; /* Выравнивание по горизонтали */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .about-project__deadline-right {
   flex: 4;
   background-color: #303030;
-  display: flex; /* Добавляем flex */
-  justify-content: center; /* Выравнивание по вертикали */
-  align-items: center; /* Выравнивание по горизонтали */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .about-project__deadline-right-text {
   text-decoration: #fff;
@@ -56,10 +56,10 @@
 .about-project__deadline-text {
   font-size: 14px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   line-height: normal;
-  align-items: center; /* Выравнивание по вертикали */
-  justify-content: center; /* Выравнивание по горизонтали */
+  align-items: center;
+  justify-content: center;
 }
 
 .about-project__deadline-components {
@@ -72,10 +72,10 @@
   color: #8b8b8b;
   flex: 1;
   width: 20%;
-  display: flex; /* Добавляем flex */
-  flex-direction: column; /* Устанавливаем направление flex-контейнера */
-  justify-content: center; /* Выравнивание по вертикали */
-  align-items: center; /* Выравнивание по горизонтали */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .about-project__subtitle_right {
@@ -85,16 +85,16 @@
 .about-project__deadline-right-frontend {
   color: #8b8b8b;
   flex: 4;
-  display: flex; /* Добавляем flex */
-  justify-content: center; /* Выравнивание по вертикали */
-  align-items: center; /* Выравнивание по горизонтали */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .about-project__deadline-text {
   margin: 0;
   padding: 9px 0 9px 0;
-  align-items: center; /* Выравнивание по вертикали */
-  justify-content: center; /* Выравнивание по горизонтали */
+  align-items: center;
+  justify-content: center;
 }
 
 .about-project__subtitle {
@@ -106,6 +106,7 @@
 }
 
 .about-project__subtitle_title {
+  margin: 20px 0 0 0;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -114,9 +115,127 @@
 }
 
 .about-project__subtitle_text {
-  margin-top: 26px;
+  margin: 26px 0 0 0;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 20px; /* 142.857% */
+  line-height: 20px;
+}
+
+@media screen and (max-width: 890px) {
+  .about-project__container {
+    padding-top: 90px;
+    margin: 0 50px;
+  }
+  .about-project__deadline-right {
+    flex: 4.6 1;
+    padding-right: 5px;
+  }
+
+  .about-project__deadline-left-text {
+    padding-left: 18px;
+  }
+
+  .about-project__deadline-right-text {
+    padding-right: 3px;
+  }
+
+  .about-project__deadline-left {
+    padding-right: 27px;
+  }
+  .about-project__deadline-components {
+    margin-top: 4px;
+  }
+
+  .about-project__deadline-text {
+    margin: 0;
+    padding: 9px 0 9px 7px;
+    font-weight: 400;
+  }
+
+  .about-project__subtitle_text {
+    font-size: 12px;
+    line-height: 18px;
+    margin-top: 22px;
+  }
+
+  .about-project__subtitle {
+    gap: 18px;
+  }
+
+  .about-project__deadline {
+    margin-top: 94px;
+  }
+
+  .about-project {
+    padding-bottom: 82px;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .title {
+    padding-bottom: 28px;
+  }
+
+  .about-project__subtitle {
+    margin-top: 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 53px;
+  }
+  .about-project__subtitle_text {
+    margin: 16px 0 0 0;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 16px; /* 145.455% */
+  }
+  .about-project__container {
+    padding-top: 72px;
+    margin: 0 18px;
+  }
+
+  .title_text {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+
+  .about-project__subtitle_title {
+    margin-top: 5px;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+
+  .about-project__subtitle_right {
+    margin: 0;
+  }
+
+  .about-project__deadline {
+    margin-top: 60px;
+  }
+
+  .about-project__deadline-text {
+    padding: 11px 0 9px 25px;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    white-space: nowrap;
+  }
+
+  .about-project__deadline-right {
+    padding-right: 22px;
+  }
+
+  .about-project__deadline-left {
+    padding-right: 44px;
+  }
+
+  .about-project__deadline-components {
+    margin-top: 0;
+    margin-left: 9px;
+  }
+
+  .about-project {
+    padding-bottom: 41px;
+  }
 }
