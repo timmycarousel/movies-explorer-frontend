@@ -178,7 +178,7 @@
   }
 
   .about-project__subtitle {
-    margin-top: 56px;
+    margin-top: 57px;
     display: flex;
     flex-direction: column;
     gap: 53px;
@@ -190,7 +190,7 @@
     line-height: 16px; /* 145.455% */
   }
   .about-project__container {
-    padding-top: 72px;
+    padding-top: 73px;
     margin: 0 18px;
   }
 
