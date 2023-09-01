@@ -1,14 +1,13 @@
 import React from "react";
 
-function Movies() {
-  console.log("рендерится ЛОГИН!!!!");
+import SearchForm from "./SearchForm/SearchForm";
+import MoviesCardList from "./MoviesCardList/MoviesCardList";
 
+export default function Movies() {
   return (
-    <div className="login">
-      <h2> Test Router</h2>
-      <p>Залогиниться нужно</p>
-    </div>
+    <section className="movies">
+      <SearchForm />
+      <MoviesCardList />
+    </section>
   );
 }
-
-export default Movies;

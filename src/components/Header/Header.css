@@ -4,8 +4,12 @@
   width: 100%;
 }
 
+.header_login {
+  background-color: #202020;
+}
+
 .header__container {
-  padding: 20px 70px;
+  padding: 0 70px 0 70px;
   margin: 0;
   display: flex;
   justify-content: space-between;
@@ -18,6 +22,7 @@
 }
 
 .header__btn {
+  margin: 0;
   padding: 7px 20px;
   border: none;
   background-color: transparent;
@@ -29,6 +34,27 @@
   font-style: normal;
   font-weight: 500;
   line-height: 16px;
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+}
+
+.header__btn_movies {
+  font-size: 13px;
+  font-style: normal;
+  line-height: 18px; /* 138.462% */
+  margin-left: 44px;
+  padding: 0;
+}
+
+.header__btn_saved-movies {
+  font-size: 13px;
+  font-style: normal;
+  line-height: 18px; /* 138.462% */
+  margin-left: 16px;
+  padding: 0;
 }
 
 .header__logo {
@@ -52,6 +78,15 @@
 .header__btn_register {
   color: #fff;
   margin-right: -20px;
+}
+
+.header__account-icon {
+  margin-right: -14px;
+  margin-top: 5px;
+}
+
+.header__account-icon:hover {
+  opacity: 0.8;
 }
 
 @media screen and (max-width: 824px) {

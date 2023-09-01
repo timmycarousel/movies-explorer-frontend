@@ -21,3 +21,9 @@
 @import url("./components/Main/Portfolio/Portfolio.css");
 
 @import url("./components/Footer/Footer.css");
+
+@import url("./components/Movies/MoviesCard/MoviesCard.css");
+
+@import url("./components/Movies/MoviesCardList/MoviesCardList.css");
+
+@import url("./components/Movies/SearchForm/SearchForm.css");
