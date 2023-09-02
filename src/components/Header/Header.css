@@ -81,17 +81,25 @@
 }
 
 .header__account-icon {
-  margin-right: -14px;
-  margin-top: 5px;
+  margin-right: -44px;
+  margin-top: 7px;
 }
 
 .header__account-icon:hover {
   opacity: 0.8;
 }
 
+@media screen and (max-width: 895px) {
+  .header__btn_movies,
+  .header__btn_saved-movies,
+  .header__account-icon {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 824px) {
   .header__container {
-    padding: 22px 30px;
+    padding: 12px 30px 31px 30px;
   }
 }
 
@@ -108,5 +116,11 @@
 
   .header__btn_register {
     margin-right: -27px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .header__container {
+    padding: 16px 15px 34px 15px;
   }
 }
