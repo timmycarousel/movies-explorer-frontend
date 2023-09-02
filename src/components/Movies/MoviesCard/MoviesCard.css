@@ -88,11 +88,13 @@
 
   .movie-card__info {
     margin-left: 14px;
+    max-width: 98%;
   }
 
   .movie-card__like-button img {
     width: 30px;
-    margin-right: 24px;
+
+    margin-right: 18px;
   }
 
   .movie-card__duration {
