@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90%;
+  /* width: 90%; */
   max-width: 1140px;
   margin-left: 70px;
   margin-right: 70px;
@@ -58,12 +58,14 @@
 }
 
 .search-form__toggle {
+  cursor: default;
   margin-top: 72px;
   display: flex;
   align-items: center;
 }
 
 .search-form__toggle-label {
+  cursor: pointer;
   display: inline-block;
   position: relative;
   width: 36px;

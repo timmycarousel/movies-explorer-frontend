@@ -33,3 +33,19 @@
 .movies-card-list__button:hover {
   opacity: 0.8;
 }
+
+@media screen and (max-width: 895px) {
+  .movies-card-list {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+  .movie-card {
+    width: 339px;
+    height: 262px;
+  }
+
+  .movies-card-list__container {
+    gap: 30px;
+  }
+}

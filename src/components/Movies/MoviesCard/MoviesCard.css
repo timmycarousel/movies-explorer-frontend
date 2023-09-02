@@ -1,20 +1,18 @@
 .movie-card {
+  background-color: #222;
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: center;
-  width: 364px;
+  max-width: 364px;
+  width: 100%;
   height: 281px;
 }
 
-.movie-card image {
-  width: 364px;
-  height: 203px;
-}
-
 .movie-card__info {
-  max-height: 38px;
-  margin-top: 4px;
+  /* max-height: 38px; */
+  margin-top: 9px;
   text-align: center;
   display: flex;
   justify-content: space-between;
@@ -22,14 +20,14 @@
   padding: 0;
   margin-left: 17px;
   /* margin-right: 16px; */
-  max-width: 332px;
+  /* max-width: 332px; */
   width: 100%;
 }
 
 .movie-card__title {
   margin: 0;
   padding: 0;
-
+  margin-bottom: 8px;
   color: #fff;
   font-family: Inter;
   font-size: 13px;
@@ -42,16 +40,18 @@
 }
 
 .movie-card__like-button {
-  margin-right: 7px;
-  margin-top: 3px;
   color: #424242;
   background-color: transparent;
   border: none;
   cursor: pointer;
   font-size: 16px;
-  width: 30px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.movie-card__like-button img {
+  width: 30px;
+  margin-right: 27px;
 }
 
 .movie-card__like-button:hover {
@@ -61,7 +61,7 @@
 .movie-card__duration {
   margin: 0;
   padding: 0;
-  margin-top: 6px;
+  margin-top: 3px;
   margin-left: 16px;
   color: #8b8b8b;
   font-size: 11px;
