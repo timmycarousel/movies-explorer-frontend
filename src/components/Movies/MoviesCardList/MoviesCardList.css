@@ -48,4 +48,8 @@
   .movies-card-list__container {
     gap: 30px;
   }
+
+  .movies-card-list__button {
+    margin-top: 80px;
+  }
 }

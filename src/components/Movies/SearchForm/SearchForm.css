@@ -110,3 +110,11 @@
   font-weight: 400;
   line-height: 18px; /* 128.571% */
 }
+
+@media screen and (max-width: 895px) {
+  .search-form {
+    margin-left: 30px;
+    margin-right: 30px;
+    padding-bottom: 50px;
+  }
+}

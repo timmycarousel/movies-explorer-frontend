@@ -1,13 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import movieData from "../MovieData/MovieData";
 
 export default function MoviesCardList() {
-  const [visibleMovies, setVisibleMovies] = useState(12); // Начальное количество видимых фильмов
+  const [visibleMovies, setVisibleMovies] = useState(12);
+
+  // Добавим медиазапрос для отслеживания ширины экрана
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 895) {
+        setVisibleMovies(8);
+      } else {
+        setVisibleMovies(12);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleShowMore = () => {
-    // Обработчик для кнопки "Еще"
-    // Увеличиваем количество видимых фильмов на 12 при каждом клике
     setVisibleMovies(visibleMovies + 12);
   };
 
