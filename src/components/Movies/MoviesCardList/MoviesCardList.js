@@ -3,12 +3,16 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import movieData from "../MovieData/MovieData";
 
 export default function MoviesCardList() {
-  const [visibleMovies, setVisibleMovies] = useState(12);
+  const [visibleMovies, setVisibleMovies] = useState(
+    window.innerWidth <= 400 ? 5 : window.innerWidth <= 895 ? 8 : 12
+  );
 
   // Добавим медиазапрос для отслеживания ширины экрана
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 895) {
+      if (window.innerWidth <= 400) {
+        setVisibleMovies(5);
+      } else if (window.innerWidth <= 895) {
         setVisibleMovies(8);
       } else {
         setVisibleMovies(12);
@@ -35,7 +39,6 @@ export default function MoviesCardList() {
             <MoviesCard key={index} movie={movie} />
           ))}
         </div>
-        {/* Показываем кнопку "Еще", если есть еще фильмы для показа */}
         {visibleMovies < movieData.length && (
           <button className="movies-card-list__button" onClick={handleShowMore}>
             Еще

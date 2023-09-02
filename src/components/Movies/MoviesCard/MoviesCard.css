@@ -70,6 +70,34 @@
   font-weight: 400;
   line-height: normal;
 }
-
 @media screen and (max-width: 895px) {
+  .movie-card {
+    width: 339px;
+    height: 262px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .movie-card {
+    max-height: 237px;
+  }
+
+  .movie-card__title {
+    font-size: 12px;
+  }
+
+  .movie-card__info {
+    margin-left: 14px;
+  }
+
+  .movie-card__like-button img {
+    width: 30px;
+    margin-right: 24px;
+  }
+
+  .movie-card__duration {
+    font-size: 10px;
+    margin-top: 0;
+    margin-left: 14px;
+  }
 }
