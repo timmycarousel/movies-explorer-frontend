@@ -1,5 +1,5 @@
 .portfolio__container {
-  padding-bottom: 204px;
+  padding-bottom: 202px;
   margin-left: 70px;
   margin-right: 70px;
 }
@@ -62,7 +62,7 @@
 
 @media screen and (max-width: 824px) {
   .portfolio__container {
-    margin: 0 50px 0 50px;
+    margin: 0 50px 1px 50px;
     padding-bottom: 167px;
   }
 

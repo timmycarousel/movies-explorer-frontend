@@ -99,7 +99,11 @@
 
 @media screen and (max-width: 824px) {
   .header__container {
-    padding: 12px 30px 31px 30px;
+    padding: 22px 30px 22px 30px;
+  }
+
+  .header_login {
+    margin-top: -10px;
   }
 }
 
@@ -122,5 +126,9 @@
 @media screen and (max-width: 400px) {
   .header__container {
     padding: 27px 15px 22px 15px;
+  }
+
+  .header_login {
+    margin-top: 1px;
   }
 }
