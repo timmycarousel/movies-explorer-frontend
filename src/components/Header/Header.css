@@ -9,7 +9,7 @@
 }
 
 .header__container {
-  padding: 0 70px 0 70px;
+  padding: 15px 70px 0 70px;
   margin: 0;
   display: flex;
   justify-content: space-between;
