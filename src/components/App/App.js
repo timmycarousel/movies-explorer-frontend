@@ -11,6 +11,7 @@ import Login from "../Login/Login";
 import Footer from "../Footer/Footer";
 
 import "./App.css";
+import AllMoviesCardList from "../AllMoviesCardList/AllMoviesCardList";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
           <Route path="/sign-up" element={<Register />} />
           <Route path="/sign-in" element={<Login />} />
           <Route path="/" element={<Main />} />
-          <Route path="/movies" element={<Movies />} />
+          <Route path="/movies" element={<AllMoviesCardList />} />
           <Route path="/saved-movies" element={<SavedMovies />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>

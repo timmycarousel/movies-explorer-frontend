@@ -3,16 +3,19 @@ const movieData = [
     imageUrl: "../../../images/pic__COLOR_pic.png",
     title: "33 слова о дизайне",
     duration: 107,
+    saved: true,
   },
   {
     imageUrl: "../../../images/pic__COLOR_pic-4.png",
     title: "Киноальманах «100 лет дизайна»",
     duration: 63,
+    saved: true,
   },
   {
     imageUrl: "../../../images/pic__COLOR_pic-8.png",
     title: "В погоне за Бенкси",
     duration: 102,
+    saved: true,
   },
   {
     imageUrl: "../../../images/pic__COLOR_pic-1.png",

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import movieData from "../MovieData/MovieData";
+// import movieData from "../MovieData/MovieData"; // Импортируйте ваш массив фильмов
 
-export default function MoviesCardList() {
+// let initialMovies = movieData;
+
+export default function MoviesCardList({ movies }) {
   const [visibleMovies, setVisibleMovies] = useState(
     window.innerWidth <= 400 ? 5 : window.innerWidth <= 895 ? 8 : 12
   );
@@ -35,11 +37,11 @@ export default function MoviesCardList() {
     <>
       <section className="movies-card-list">
         <div className="movies-card-list__container">
-          {movieData.slice(0, visibleMovies).map((movie, index) => (
+          {movies.slice(0, visibleMovies).map((movie, index) => (
             <MoviesCard key={index} movie={movie} />
           ))}
         </div>
-        {visibleMovies < movieData.length && (
+        {visibleMovies < movies.length && (
           <button className="movies-card-list__button" onClick={handleShowMore}>
             Еще
           </button>
