@@ -1,3 +1,23 @@
-.saved-movies .movies-card-list {
-  /* Ваши стили здесь */
+.saved-movies .movie-card__like-button {
+  background-image: url("../../images/d4.svg");
+  opacity: 0;
+}
+
+.saved-movies .movie-card:hover .movie-card__like-button {
+  background-image: url("../../images/d4.svg");
+  opacity: 1;
+}
+
+.saved-movies .movie-card:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 400px) {
+  .saved-movies .movie-card.liked .movies-card-list {
+    margin-bottom: 248px;
+  }
+  .saved-movies .movie-card.unliked .movie-card__like-button {
+    background-image: url("../../images/d4.svg");
+    opacity: 1;
+  }
 }
