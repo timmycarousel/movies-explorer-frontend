@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import accountIcon from "../../images/account-icon.svg";
 import close from "../../images/close.svg";
 import Burger from "../../images/burger.svg";
@@ -20,8 +20,6 @@ export default function BurgerMenu() {
       <button className="burger-menu__button" onClick={toggleMenu}>
         <img src={Burger} alt="бургер меню" />
       </button>
-
-      {/* Оверлей для затемнения оставшегося контента */}
       <div
         className={`burger-menu__overlay ${isOpen ? "open" : ""}`}
         onClick={closeMenu}

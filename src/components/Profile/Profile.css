@@ -6,8 +6,7 @@
 .profile__info {
   padding-top: 123px;
   max-width: 410px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 .profile__title {
@@ -15,9 +14,7 @@
   color: #fff;
   text-align: center;
   font-size: 24px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 }
 
 .profile__info-row {
@@ -26,21 +23,17 @@
   margin-bottom: 34px;
 }
 
-.profile__info-label {
+.profile__info-label,
+.profile__info-value {
   color: #fff;
   font-size: 11px;
-  font-style: normal;
   font-weight: 500;
   line-height: normal;
 }
 
 .profile__info-value {
-  color: #fff;
   text-align: right;
-  font-size: 11px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
 }
 
 .profile__actions {
@@ -52,15 +45,12 @@
 
 .profile__action-button {
   max-width: 410px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   border: none;
   background-color: inherit;
   color: #fff;
   text-align: center;
-  font-family: Inter;
   font-size: 13px;
-  font-style: normal;
   font-weight: 400;
   line-height: normal;
 }

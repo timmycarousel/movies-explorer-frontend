@@ -1,12 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
+import AuthForm from "../AuthForm/AuthForm";
 
 function Login() {
-  console.log("рендерится ЛОГИН!!!!");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // логика для входа
+  };
 
   return (
-    <div className="login">
-      <h2> Test Router</h2>
-      <p>Залогиниться нужно</p>
+    <div>
+      <AuthForm
+        isSignUp={false}
+        handleSubmit={handleSubmit}
+        handleInputChange={handleInputChange}
+        values={formData}
+        buttonText="Войти"
+      />
     </div>
   );
 }

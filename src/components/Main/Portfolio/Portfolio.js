@@ -13,10 +13,14 @@ function Portfolio() {
         <div className="portfolio__sites">
           {portfolioData.map((item, index) => (
             <div className="portfolio__site" key={index}>
-              <a href={item.link} className="portfolio__site-link">
+              <a
+                href={item.link}
+                className="portfolio__site-link"
+                target="_blank"
+              >
                 <span className="portfolio__site-text">{item.title}</span>
               </a>
-              <a href={site} className="portfolio__site-link">
+              <a href={site} className="portfolio__site-link" target="_blank">
                 <img src={site} alt={item.alt} />
               </a>
             </div>

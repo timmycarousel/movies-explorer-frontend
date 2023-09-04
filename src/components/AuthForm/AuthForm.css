@@ -1,0 +1,186 @@
+/* Общие стили */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 70px;
+  height: 100vh;
+  background-color: #202020;
+  max-width: 396px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-groupers {
+  height: 266px;
+}
+
+.auth-form__logo {
+  align-self: flex-start;
+  width: 30px;
+}
+
+.auth-form h2,
+.auth-form__title {
+  align-self: flex-start;
+  color: #fff;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-label {
+  color: #8b8b8b;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.form-input {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  padding-left: 15px;
+  width: 381px;
+  height: 43px;
+  border-radius: 8px;
+  background: #2f2f2f;
+  color: #fff;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.form-input:focus {
+  border-color: transparent;
+  outline: none;
+}
+
+.validation-message {
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
+  margin-bottom: -9px;
+  margin-left: 1px;
+  color: #ee3465;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  display: block;
+  height: 14px;
+  max-width: 396px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: normal;
+}
+
+.auth-form button[type="submit"] {
+  margin-top: 74px;
+  max-width: 396px;
+  width: 100%;
+  height: 45px;
+  flex-shrink: 0;
+  border-radius: 3px;
+  background: #4285f4;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.auth-form button[type="submit"]:hover {
+  background-color: #357ae8;
+}
+
+.auth-form p {
+  color: #8b8b8b;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 16px 0 0 0;
+}
+
+.auth-form p a {
+  margin: 0;
+  color: #4285f4;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.form-input:invalid {
+  color: #ee3465;
+}
+
+/* Медиа-запросы */
+@media screen and (max-width: 895px) {
+  .auth-form {
+    margin-top: 232px;
+  }
+}
+
+@media screen and (max-width: 443px) {
+  .auth-form {
+    margin-top: 55px;
+    max-width: 320px;
+  }
+
+  .auth-form h2 {
+    align-self: center;
+    margin: 48px 0 72px 0;
+  }
+
+  .auth-form__logo {
+    align-self: center;
+    margin-right: 9px;
+  }
+
+  .auth-form button[type="submit"] {
+    margin-top: 165px;
+    max-width: 260px;
+    font-size: 12px;
+  }
+
+  .auth-form p {
+    font-size: 12px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 7px;
+    margin-left: 0;
+  }
+
+  .form-label {
+    margin-bottom: 5px;
+  }
+
+  .form-input {
+    margin-top: 5px;
+    max-width: 243px;
+  }
+
+  .validation-message {
+    max-width: 260px;
+  }
+}

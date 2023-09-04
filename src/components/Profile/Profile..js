@@ -5,14 +5,11 @@ export default function Profile() {
   const navigate = useNavigate();
 
   const handleEditProfileClick = () => {
-    // Обработчик для редактирования профиля
-    navigate("/profile/edit"); // Перенаправьте пользователя на страницу редактирования профиля
+    navigate("/profile/edit");
   };
 
   const handleSignOutClick = () => {
-    // Обработчик для выхода из аккаунта
-    // Реализуйте здесь логику выхода из аккаунта (например, удаление токена аутентификации)
-    navigate("/"); // Перенаправьте пользователя на главную страницу
+    navigate("/");
   };
 
   return (

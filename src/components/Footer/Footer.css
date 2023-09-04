@@ -16,6 +16,7 @@
   padding-bottom: 21px;
   border-bottom: 1px solid #424242;
 }
+
 .footer__copyright {
   margin: 0;
   font-size: 13px;
@@ -60,7 +61,8 @@
     margin: 0 10px;
   }
 
-  .footer__title {
+  .footer__title,
+  .footer__link {
     font-size: 12px;
   }
 
@@ -69,17 +71,13 @@
     flex-direction: column-reverse;
     align-items: center;
   }
+
   .footer__nav {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 13px;
     margin-bottom: 31px;
-    /* margin: 0 16px; */
-  }
-
-  .footer__link {
-    font-size: 12px;
   }
 
   .footer__copyright {

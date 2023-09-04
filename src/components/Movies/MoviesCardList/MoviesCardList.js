@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import Preloader from "../../Preloader/Preloader"; // Импортируйте ваш компонент Preloader
+import Preloader from "../../Preloader/Preloader";
 
 export default function MoviesCardList({ movies }) {
   const [visibleMovies, setVisibleMovies] = useState(
     window.innerWidth <= 400 ? 5 : window.innerWidth <= 895 ? 8 : 12
   );
-  const [isLoading, setIsLoading] = useState(true); // Состояние загрузки
-
-  // Добавим медиазапрос для отслеживания ширины экрана
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 400) {
@@ -39,7 +37,6 @@ export default function MoviesCardList({ movies }) {
 
   return (
     <section className="movies-card-list">
-      {/* Отображаем прелоадер, если isLoading равно true */}
       {isLoading ? (
         <Preloader />
       ) : (

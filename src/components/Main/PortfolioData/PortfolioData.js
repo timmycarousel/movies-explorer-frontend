@@ -1,17 +1,17 @@
 const portfolioData = [
   {
     title: "Статичный сайт",
-    link: "ссылка_на_сайт1",
+    link: "https://timmycarousel.github.io/how-to-learn/",
     alt: "Статичный сайт",
   },
   {
     title: "Адаптивный сайт",
-    link: "ссылка_на_сайт2",
+    link: "https://timmycarousel.github.io/russian-travel/",
     alt: "Адаптивный сайт",
   },
   {
     title: "Одностраничное приложение",
-    link: "ссылка_на_сайт3",
+    link: "https://timmycarousel.github.io/react-mesto-auth/",
     alt: "Одностраничное приложение",
   },
 ];

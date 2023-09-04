@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 
 function MovieCard({ movie }) {
-  // Инициализация начального состояния liked как false
   const [liked, setLiked] = useState(false);
 
   const hours = Math.floor(movie.duration / 60);
   const minutes = movie.duration % 60;
 
   const toggleLike = () => {
-    // При клике на кнопку, меняем состояние liked на противоположное
     setLiked(!liked);
   };
 

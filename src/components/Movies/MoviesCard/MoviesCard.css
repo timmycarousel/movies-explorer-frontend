@@ -60,7 +60,6 @@
   background-color: inherit;
 }
 
-/* Определите фоновые изображения для классов .liked и .unliked */
 .movie-card.liked .movie-card__like-button {
   background-image: var(--liked-icon);
 }

@@ -2,9 +2,7 @@
 .movies-card-list {
   max-width: 1140px;
   text-align: center;
-  margin-left: 70px;
-  margin-right: 70px;
-  margin-bottom: 158px;
+  margin: 0 70px 158px 70px;
 }
 
 .movies-card-list__container {
@@ -42,8 +40,7 @@
 
 @media screen and (max-width: 895px) {
   .movies-card-list {
-    margin-left: 30px;
-    margin-right: 30px;
+    margin: 0 30px;
   }
 
   .movies-card-list__container {
@@ -55,6 +52,7 @@
     margin-top: 80px;
   }
 }
+
 @media screen and (max-width: 767px) {
   .movies-card-list__container {
     justify-content: center;
@@ -63,13 +61,14 @@
 
 @media screen and (max-width: 400px) {
   .movies-card-list {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 0 10px;
   }
+
   .movies-card-list__container {
     gap: 14px;
     margin-bottom: 1px;
   }
+
   .movies-card-list__button {
     margin-top: 76px;
   }

@@ -5,14 +5,14 @@
 }
 
 .portfolio__title {
-  padding-bottom: 8px;
   margin: 0;
   color: #a0a0a0;
   font-feature-settings: "clig" off, "liga" off;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: 20px; /* 111.111% */
+  line-height: 20px;
+  padding-bottom: 8px;
 }
 
 .portfolio__sites {
@@ -25,20 +25,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 0 19px 0;
+  padding: 18px 0;
   border-bottom: 1px solid #e6e6e6;
 }
 
 .portfolio__site:last-child {
-  padding-top: 21px;
   border-bottom: none;
   padding-bottom: 0;
+  padding-top: 21px;
 }
 
 .portfolio__site-link {
+  text-decoration: none;
   padding: 0;
   margin: 0;
-  text-decoration: none;
 }
 
 .portfolio__site-link:hover {
@@ -50,13 +50,13 @@
   font-size: 30px;
   font-style: normal;
   font-weight: 400;
-  line-height: 50px; /* 166.667% */
+  line-height: 50px;
   letter-spacing: -1.2px;
 }
 
 .portfolio__site-link img {
-  padding: 10px 5px 0 0;
   margin: 0;
+  padding: 10px 5px 0 0;
   width: 19px;
 }
 
@@ -64,6 +64,11 @@
   .portfolio__container {
     margin: 0 50px 1px 50px;
     padding-bottom: 167px;
+  }
+
+  .portfolio__title {
+    font-size: 14px;
+    padding-bottom: 8px;
   }
 
   .portfolio__site-text {
@@ -83,8 +88,8 @@
   }
 
   .portfolio__title {
-    padding-bottom: 8px;
     font-size: 14px;
+    padding-bottom: 8px;
   }
 
   .portfolio__site-text {
@@ -102,9 +107,8 @@
   }
 
   .portfolio__site-link img {
-    padding: 0 4px 2px 0;
-    margin-top: 1px;
     margin: 0;
+    padding: 0 4px 2px 0;
     width: 11px;
   }
 }
