@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -14,6 +14,15 @@ import "./App.css";
 import AllMoviesCardList from "../AllMoviesCardList/AllMoviesCardList";
 
 function App() {
+  const location = useLocation();
+
+  // Определите, нужно ли отображать футер на текущей странице
+  const showFooter =
+    !location.pathname.includes("/profile") &&
+    !location.pathname.includes("/sign-up") &&
+    !location.pathname.includes("/sign-in") &&
+    !location.pathname.includes("/profile/edit");
+
   return (
     <div className="app">
       <Header />
@@ -27,7 +36,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </div>
-      <Footer />
+      {showFooter && <Footer />}
     </div>
   );
 }

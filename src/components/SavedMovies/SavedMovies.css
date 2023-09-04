@@ -8,6 +8,11 @@
   opacity: 1;
 }
 
+.saved-movies .movie-card:hover .movie-card__like-button:hover {
+  background-image: url("../../images/d4.svg");
+  opacity: 0.8;
+}
+
 .saved-movies .movie-card:hover {
   cursor: pointer;
 }
