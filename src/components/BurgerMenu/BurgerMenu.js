@@ -49,13 +49,13 @@ export default function BurgerMenu() {
             </NavLink>
           </li>
         </ul>
-        <a className="burger-menu__account" href="/profile">
+        <NavLink className="burger-menu__account" to="/profile">
           <img
             src={accountIcon}
             alt="Аккаунт"
             className="burger-menu__account-icon"
           />
-        </a>
+        </NavLink>
       </nav>
     </div>
   );

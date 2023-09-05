@@ -15,7 +15,7 @@ function App() {
   const location = useLocation();
 
   const showHeaderPaths = ["/", "/movies", "/saved-movies", "/profile"];
-  const showFooterPaths = ["/", "/movies", "/saved-movies", "/profile"];
+  const showFooterPaths = ["/", "/movies", "/saved-movies"];
 
   const showHeader = showHeaderPaths.includes(location.pathname);
   const showFooter = showFooterPaths.includes(location.pathname);

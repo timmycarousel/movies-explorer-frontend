@@ -40,7 +40,7 @@
 
 @media screen and (max-width: 895px) {
   .movies-card-list {
-    margin: 0 30px;
+    margin: 0 30px 160px 30px;
   }
 
   .movies-card-list__container {
@@ -70,6 +70,6 @@
   }
 
   .movies-card-list__button {
-    margin-top: 76px;
+    margin-top: 74px;
   }
 }

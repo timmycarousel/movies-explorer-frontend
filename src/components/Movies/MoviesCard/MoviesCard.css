@@ -102,6 +102,7 @@
 
   .movie-card__title {
     font-size: 12px;
+    padding-bottom: 3px;
   }
 
   .movie-card__info {

@@ -13,7 +13,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  padding-bottom: 21px;
+  padding-bottom: 24px;
   border-bottom: 1px solid #424242;
 }
 
@@ -54,20 +54,27 @@
   .footer__container {
     margin: 0 30px;
   }
+
+  .footer__block {
+    padding-top: 17px;
+  }
 }
 
 @media screen and (max-width: 760px) {
   .footer__container {
-    margin: 0 10px;
+    margin: 159px 10px;
   }
-
-  .footer__title,
   .footer__link {
     font-size: 12px;
   }
 
+  .footer__title {
+    font-size: 12px;
+    padding-bottom: 22px;
+  }
+
   .footer__block {
-    padding-top: 31px;
+    padding-top: 30px;
     flex-direction: column-reverse;
     align-items: center;
   }

@@ -135,8 +135,9 @@
     line-height: 16px;
   }
   .about-me__block_subtitle {
+    padding-top: 2px;
     font-size: 11px;
-    padding-bottom: 40px;
+    padding-bottom: 38px;
     line-height: 16px;
   }
 }

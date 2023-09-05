@@ -7,7 +7,7 @@
 }
 
 .nav-tab__container {
-  margin: 23px 0 0;
+  margin: -3px 0 0;
   padding: 0;
   display: flex;
   gap: 40px;
@@ -32,20 +32,21 @@
 
 @media screen and (max-width: 824px) {
   .nav-tab__container {
-    margin-top: 24px;
+    margin: 0;
     gap: 42px;
   }
 
-  .nav-tab__link,
-  .tech__block_subtitle {
-    font-size: 12px;
-    line-height: 18px;
+  .nav-tab__link {
+    font-size: 13px;
+    line-height: 16px;
+    font-style: normal;
+    font-weight: 500;
   }
 }
 
 @media screen and (max-width: 760px) {
   .nav-tab__container {
-    margin-top: 24px;
+    margin-top: -4px;
     gap: 25px;
   }
 
