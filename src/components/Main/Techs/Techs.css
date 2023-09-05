@@ -134,4 +134,14 @@
   .tech__list {
     margin: 0 53px;
   }
+
+  .tech__list_block {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .tech__list_block {
+    justify-content: flex-start;
+  }
 }

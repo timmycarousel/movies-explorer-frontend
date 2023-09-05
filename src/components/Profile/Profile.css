@@ -81,7 +81,7 @@
 
 @media screen and (max-width: 450px) {
   .profile {
-    padding-top: 64px;
+    padding-top: 71px;
   }
 
   .profile__action-button {
@@ -94,6 +94,7 @@
 
   .profile__actions {
     margin-top: 378px;
+    margin-bottom: 40px;
   }
 
   .profile__info {

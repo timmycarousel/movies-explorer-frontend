@@ -35,6 +35,11 @@
   transition: background-color 0.5s ease;
 }
 
+.search-form__input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #5c464c;
+}
+
 .search-form__button {
   background-color: transparent;
   border: none;
@@ -43,6 +48,10 @@
   padding: 0;
   position: absolute;
   right: 6px;
+}
+
+.search-form__button:hover {
+  opacity: 0.8;
 }
 
 .search-form__icon {
@@ -54,6 +63,10 @@
   margin-top: 40px;
   display: flex;
   align-items: center;
+}
+
+.search-form__toggle-label:hover {
+  opacity: 0.8;
 }
 
 .search-form__toggle-label {

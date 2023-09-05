@@ -19,7 +19,7 @@
 
 @media screen and (max-width: 400px) {
   .saved-movies .movies-card-list__container {
-    margin-bottom: 85px;
+    margin-bottom: 95px;
   }
   /* .saved-movies .movie-card.liked .movies-card-list {
     margin-bottom: 200px;

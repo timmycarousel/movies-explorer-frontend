@@ -18,6 +18,7 @@ function MovieCard({ movie }) {
         <button
           className="movie-card__like-button"
           onClick={toggleLike}
+          type="button"
         ></button>
       </div>
       <p className="movie-card__duration">

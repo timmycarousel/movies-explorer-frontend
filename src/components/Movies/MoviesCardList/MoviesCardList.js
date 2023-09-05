@@ -47,7 +47,11 @@ export default function MoviesCardList({ movies }) {
         </div>
       )}
       {visibleMovies < movies.length && (
-        <button className="movies-card-list__button" onClick={handleShowMore}>
+        <button
+          className="movies-card-list__button"
+          onClick={handleShowMore}
+          type="button"
+        >
           Еще
         </button>
       )}

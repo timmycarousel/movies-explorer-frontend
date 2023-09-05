@@ -5,7 +5,7 @@ export default function Profile() {
   const navigate = useNavigate();
 
   const handleEditProfileClick = () => {
-    navigate("/profile/edit");
+    navigate("/profile");
   };
 
   const handleSignOutClick = () => {
@@ -13,15 +13,15 @@ export default function Profile() {
   };
 
   return (
-    <div className="profile">
-      <h2 className="profile__title">Привет, Виталий!</h2>
+    <section className="profile">
+      <h1 className="profile__title">Привет, Виталий!</h1>
       <div className="profile__info">
         <div className="profile__info-row">
-          <span className="profile__info-label">Имя:</span>
+          <span className="profile__info-label">Имя</span>
           <span className="profile__info-value">Виталий</span>
         </div>
         <div className="profile__info-row">
-          <span className="profile__info-label">E-mail:</span>
+          <span className="profile__info-label">E-mail</span>
           <span className="profile__info-value">pochta@yandex.ru</span>
         </div>
       </div>
@@ -29,13 +29,18 @@ export default function Profile() {
         <button
           className="profile__action-button"
           onClick={handleEditProfileClick}
+          type="button"
         >
           Редактировать
         </button>
-        <button className="profile__action-button" onClick={handleSignOutClick}>
+        <button
+          className="profile__action-button"
+          onClick={handleSignOutClick}
+          type="button"
+        >
           Выйти из аккаунта
         </button>
       </div>
-    </div>
+    </section>
   );
 }

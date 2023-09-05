@@ -17,7 +17,7 @@ export default function BurgerMenu() {
 
   return (
     <div className="burger-menu">
-      <button className="burger-menu__button" onClick={toggleMenu}>
+      <button className="burger-menu__button" onClick={toggleMenu} type="button">
         <img src={Burger} alt="бургер меню" />
       </button>
       <div

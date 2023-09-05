@@ -10,7 +10,7 @@
   margin-top: 249px;
 }
 
-.not-found h2 {
+.not-found h1 {
   font-size: 140px;
   font-weight: 400;
   margin: 2px 0 0;
@@ -44,7 +44,7 @@
     margin-top: 330px;
   }
 
-  .not-found h2 {
+  .not-found h1 {
     font-size: 80px;
   }
 

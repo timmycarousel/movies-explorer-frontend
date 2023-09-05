@@ -7,7 +7,7 @@ function Promo() {
   return (
     <div className="promo">
       <div className="promo__container">
-        <img src={logo} className="promo__logo" alt="логотип практикума" />
+        <img src={logo} className="promo__logo" alt="яндекс практикум" />
         <h1 className="promo__title">
           Учебный проект студента факультета Веб-разработки.
         </h1>

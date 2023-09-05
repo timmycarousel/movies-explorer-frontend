@@ -15,7 +15,6 @@ const movieData = [
     imageUrl: "../../../images/pic__COLOR_pic-8.png",
     title: "В погоне за Бенкси",
     duration: 102,
-    // saved: true,
   },
   {
     imageUrl: "../../../images/pic__COLOR_pic-1.png",

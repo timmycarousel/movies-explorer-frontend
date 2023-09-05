@@ -21,7 +21,11 @@
   width: 30px;
 }
 
-.auth-form h2 {
+.auth-form__logo:hover {
+  opacity: 0.8;
+}
+
+.auth-form h1 {
   margin: 36px 0 36px 0;
   padding: 0;
   align-self: flex-start;
@@ -65,8 +69,8 @@
 }
 
 .form-input:focus {
-  border-color: transparent;
   outline: none;
+  box-shadow: 0 0 0 2px #5c464c;
 }
 
 .validation-message {
@@ -127,6 +131,10 @@
   font-weight: 500;
 }
 
+.auth-form p a:hover {
+  opacity: 0.8;
+}
+
 .form-input:invalid {
   color: #ee3465;
 }
@@ -144,7 +152,7 @@
     max-width: 320px;
   }
 
-  .auth-form h2 {
+  .auth-form h1 {
     align-self: center;
     margin: 48px 0 72px 0;
   }

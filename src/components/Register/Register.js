@@ -21,7 +21,7 @@ function Register() {
   };
 
   return (
-    <div>
+    <section>
       <AuthForm
         isSignUp={true}
         handleSubmit={handleSubmit}
@@ -29,7 +29,7 @@ function Register() {
         values={formData}
         buttonText="Зарегистрироваться"
       />
-    </div>
+    </section>
   );
 }
 

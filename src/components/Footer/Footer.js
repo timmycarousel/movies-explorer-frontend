@@ -10,22 +10,28 @@ export default function Footer() {
         <div className="footer__block">
           <p className="footer__copyright">&#169; {new Date().getFullYear()}</p>
           <nav className="footer__nav">
-            <a
-              className="footer__link"
-              href="https://practicum.yandex.ru/"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              Яндекс.Практикум
-            </a>
-            <a
-              className="footer__link"
-              href="https://github.com/timmycarousel"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              Github
-            </a>
+            <ul className="footer__list">
+              <li className="footer__item">
+                <a
+                  className="footer__link"
+                  href="https://practicum.yandex.ru/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  Яндекс.Практикум
+                </a>
+              </li>
+              <li className="footer__item">
+                <a
+                  className="footer__link"
+                  href="https://github.com/timmycarousel"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  Github
+                </a>
+              </li>
+            </ul>
           </nav>
         </div>
       </div>

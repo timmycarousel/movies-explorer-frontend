@@ -23,18 +23,17 @@ function App() {
   return (
     <div className="app">
       {showHeader && <Header />}
-      <div className="content">
+      <main className="content">
         <Routes>
-          <Route path="/sign-up" element={<Register />} />
-          <Route path="/sign-in" element={<Login />} />
+          <Route path="/signup" element={<Register />} />
+          <Route path="/signin" element={<Login />} />
           <Route path="/" element={<Main />} />
           <Route path="/movies" element={<AllMoviesCardList />} />
           <Route path="/saved-movies" element={<SavedMovies />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/edit" element={<Profile />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-      </div>
+      </main>
       {showFooter && <Footer />}
     </div>
   );

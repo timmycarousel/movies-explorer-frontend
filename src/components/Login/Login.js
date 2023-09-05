@@ -21,7 +21,7 @@ function Login() {
   };
 
   return (
-    <div>
+    <section>
       <AuthForm
         isSignUp={false}
         handleSubmit={handleSubmit}
@@ -29,7 +29,7 @@ function Login() {
         values={formData}
         buttonText="Войти"
       />
-    </div>
+    </section>
   );
 }
 

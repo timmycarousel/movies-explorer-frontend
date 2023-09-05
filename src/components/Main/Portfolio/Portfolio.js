@@ -1,8 +1,5 @@
-// Portfolio.js
 import React from "react";
-
 import site from "../../../images/site.svg";
-
 import portfolioData from "../PortfolioData/PortfolioData";
 
 function Portfolio() {
@@ -10,22 +7,24 @@ function Portfolio() {
     <section className="portfolio">
       <div className="portfolio__container">
         <h1 className="portfolio__title">Портфолио</h1>
-        <div className="portfolio__sites">
+        <ul className="portfolio__sites">
           {portfolioData.map((item, index) => (
-            <div className="portfolio__site" key={index}>
+            <li className="portfolio__site" key={index}>
               <a
                 href={item.link}
                 className="portfolio__site-link"
                 target="_blank"
               >
                 <span className="portfolio__site-text">{item.title}</span>
+                <img
+                  className="portfolio__site-link-img"
+                  src={site}
+                  alt={item.alt}
+                />
               </a>
-              <a href={site} className="portfolio__site-link" target="_blank">
-                <img src={site} alt={item.alt} />
-              </a>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
