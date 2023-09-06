@@ -37,15 +37,15 @@ const AuthForm = ({
 
   return (
     <section className="auth-page">
-      <form onSubmit={handleSubmit} className="auth-form" noValidate>
-        <a href="/" className="auth-form__logo">
+      <form onSubmit={handleSubmit} className="auth-page__form" noValidate>
+        <a href="/" className="auth-page__logo">
           <img src={logo} alt="Logo" />
         </a>
         <h1>{h1Text}</h1>
-        <div className="form-groupers">
+        <div className="auth-page__groupers">
           {isSignUp && (
-            <div className="form-group">
-              <label className="form-label">Имя</label>
+            <div className="auth-page__group">
+              <label className="auth-page__label">Имя</label>
               <input
                 type="text"
                 name="name"
@@ -53,17 +53,17 @@ const AuthForm = ({
                 onChange={handleInputChangeWithValidation}
                 placeholder="Введите ваше имя"
                 required
-                className="form-input"
+                className="auth-page__input"
                 minLength="4"
                 maxLength="20"
               />
-              <span className="validation-message">
+              <span className="auth-page__validation-message">
                 {validationMessages.name}
               </span>
             </div>
           )}
-          <div className="form-group">
-            <label className="form-label">E-mail</label>
+          <div className="auth-page__group">
+            <label className="auth-page__label">E-mail</label>
             <input
               type="email"
               name="email"
@@ -71,7 +71,7 @@ const AuthForm = ({
               onChange={handleInputChangeWithValidation}
               placeholder="Введите e-mail"
               required
-              className="form-input"
+              className="auth-page__input"
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
               onInvalid={(e) =>
                 customValidation(
@@ -81,12 +81,12 @@ const AuthForm = ({
               }
               onInput={(e) => e.target.setCustomValidity("")}
             />
-            <span className="validation-message">
+            <span className="auth-page__validation-message">
               {validationMessages.email}
             </span>
           </div>
-          <div className="form-group">
-            <label className="form-label">Пароль</label>
+          <div className="auth-page__group">
+            <label className="auth-page__label">Пароль</label>
             <input
               type="password"
               name="password"
@@ -94,18 +94,18 @@ const AuthForm = ({
               value={values.password}
               onChange={handleInputChangeWithValidation}
               required
-              className="form-input"
+              className="auth-page__input"
               minLength="6"
               maxLength="20"
               onInvalid={(e) => customValidation(e, "Что-то пошло не так...")}
               onInput={(e) => e.target.setCustomValidity("")}
             />
-            <span className="validation-message">
+            <span className="auth-page__validation-message">
               {validationMessages.password}
             </span>
           </div>
         </div>
-        <button type="submit" className="form-button">
+        <button type="submit" className="auth-page__button">
           {buttonText}
         </button>
         {isSignUp ? (

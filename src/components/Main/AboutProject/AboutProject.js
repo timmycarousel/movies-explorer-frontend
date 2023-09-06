@@ -6,23 +6,23 @@ function AboutProject() {
     <section className="about-project" id="AboutProject">
       <div className="about-project__container">
         <div className="about-project__title title">
-          <h2 className="about-project__title_text title_text">О проекте</h2>
+          <h2 className="about-project__title-text title-text">О проекте</h2>
         </div>
         <div className="about-project__subtitle">
-          <div className="about-project__subtitle_left">
-            <h3 className="about-project__subtitle_title">
+          <div className="about-project__subtitle-left">
+            <h3 className="about-project__subtitle-title">
               Дипломный проект включал 5 этапов
             </h3>
-            <p className="about-project__subtitle_text">
+            <p className="about-project__subtitle-text">
               Составление плана, работу над бэкендом, вёрстку, добавление
               функциональности и финальные доработки.
             </p>
           </div>
-          <div className="about-project__subtitle_right">
-            <h3 className="about-project__subtitle_title">
+          <div className="about-project__subtitle-right">
+            <h3 className="about-project__subtitle-title">
               На выполнение диплома ушло 5 недель
             </h3>
-            <p className="about-project__subtitle_text">
+            <p className="about-project__subtitle-text">
               У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было
               соблюдать, чтобы успешно защититься.
             </p>

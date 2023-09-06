@@ -26,7 +26,7 @@
   padding-bottom: 101px;
 }
 
-.tech__list_block {
+.tech__list-block {
   padding: 0;
   margin: 0 auto;
   display: flex;
@@ -36,7 +36,7 @@
   max-width: 100%;
 }
 
-.tech__list_item {
+.tech__list-item {
   display: grid;
   place-items: center;
   background-color: #303030;
@@ -57,7 +57,7 @@
   align-items: center;
 }
 
-.tech__block_title {
+.tech__block-title {
   padding: 90px 0 26px 0;
   margin: 0;
   font-size: 50px;
@@ -67,7 +67,7 @@
   letter-spacing: -2px;
 }
 
-.tech__block_subtitle {
+.tech__block-subtitle {
   max-width: 460px;
   padding: 0 0 100px 0;
   margin: 0;
@@ -91,13 +91,13 @@
     padding-bottom: 90px;
   }
 
-  .tech__block_title {
+  .tech__block-title {
     padding-top: 80px;
     padding-bottom: 22px;
     letter-spacing: -2px;
   }
 
-  .tech__block_subtitle {
+  .tech__block-subtitle {
     max-width: 460px;
     font-size: 12px;
     line-height: 18px;
@@ -105,7 +105,7 @@
     padding-bottom: 83px;
   }
 
-  .tech__list_item {
+  .tech__list-item {
     font-size: 12px;
     min-width: 84px;
   }
@@ -116,7 +116,7 @@
     margin: 0 18px;
   }
 
-  .tech__block_title {
+  .tech__block-title {
     padding-top: 60px;
     padding-bottom: 24px;
     font-size: 30px;
@@ -124,7 +124,7 @@
     letter-spacing: -1.2px;
   }
 
-  .tech__block_subtitle {
+  .tech__block-subtitle {
     font-size: 11px;
     line-height: 16px;
     letter-spacing: -0.44px;
@@ -135,13 +135,13 @@
     margin: 0 53px;
   }
 
-  .tech__list_block {
+  .tech__list-block {
     justify-content: center;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .tech__list_block {
+  .tech__list-block {
     justify-content: flex-start;
   }
 }

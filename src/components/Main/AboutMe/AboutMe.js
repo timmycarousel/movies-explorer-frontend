@@ -6,15 +6,15 @@ function AboutMe() {
     <section className="about-me" id="AboutMe">
       <div className="about-me__container">
         <div className="about-me__title title">
-          <h2 className="about-me__title_text title_text">Студент</h2>
+          <h2 className="about-me__title-text title-text">Студент</h2>
         </div>
         <div className="about-me__block">
-          <div className="about-me__block_info">
-            <h3 className="about-me__block_name">Тимофей Воронов</h3>
-            <h4 className="about-me__block_title">
+          <div className="about-me__info">
+            <h3 className="about-me__name">Тимофей Воронов</h3>
+            <h4 className="about-me__block-title">
               Фронтенд-разработчик, 35 лет
             </h4>
-            <p className="about-me__block_subtitle">
+            <p className="about-me__block-subtitle">
               Я родился и живу в Саратове, закончил факультет экономики СГУ. У
               меня есть жена и дочь. Я люблю слушать музыку, а ещё увлекаюсь
               бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ
