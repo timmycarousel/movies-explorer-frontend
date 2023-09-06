@@ -39,7 +39,7 @@ const AuthForm = ({
     <section className="auth-page">
       <form onSubmit={handleSubmit} className="auth-page__form" noValidate>
         <a href="/" className="auth-page__logo">
-          <img src={logo} alt="Logo" />
+          <img src={logo} alt="логотип" />
         </a>
         <h1>{h1Text}</h1>
         <div className="auth-page__groupers">

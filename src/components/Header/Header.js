@@ -21,7 +21,7 @@ function Header({ isLoggedIn }) {
       <div className="header__container">
         <div className="header__left">
           <a className="header__link" href="/">
-            <img src={logo} alt="Logo" className="header__logo" />
+            <img src={logo} alt="Логотип" className="header__logo" />
           </a>
           {isLoggedIn && headerClass && (
             <>
