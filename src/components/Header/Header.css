@@ -1,0 +1,138 @@
+.header {
+  background-color: #073042;
+  max-width: 1280px;
+  width: 100%;
+  height: 74px;
+  margin: 0;
+  padding: 0;
+}
+
+.header_login {
+  background-color: #202020;
+  margin: 0;
+  padding: 0;
+}
+
+.header__container {
+  padding: 0 70px 0 70px;
+  height: 74px;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__nav {
+  height: 32px;
+  display: flex;
+  gap: 30px;
+}
+
+.header__btn {
+  margin: 0;
+  padding: 0;
+  padding: 7px 20px;
+  max-height: 32px;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.header__left {
+  margin-top: 0px;
+  display: flex;
+  align-items: center;
+  max-height: 38px;
+}
+
+.header__btn_movies {
+  font-size: 13px;
+  font-style: normal;
+  line-height: 18px;
+  font-weight: 400;
+  margin-left: 46px;
+  padding: 0;
+}
+.header__btn_saved-movies {
+  padding: 0;
+  margin: 0 0 0 17px;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.header__logo {
+  margin-top: 3px;
+}
+
+.header__logo:hover {
+  opacity: 0.8;
+}
+
+.header__btn:hover {
+  opacity: 0.8;
+}
+
+.header__btn_login {
+  color: #000;
+  border-radius: 3px;
+  background: #3ddc84;
+}
+
+.header__btn_register {
+  color: #fff;
+  margin-right: -20px;
+}
+
+.header__account {
+  margin: 0;
+  padding: 0;
+}
+
+.header__account-icon {
+  margin-right: -30px;
+}
+
+.header__account-icon:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 895px) {
+  .header__btn_movies,
+  .header__btn_saved-movies,
+  .header__account-icon {
+    display: none;
+  }
+  .header__container {
+    padding: 0 30px 0 30px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .header__container {
+    padding: 0 15px 0 15px;
+  }
+
+  .header__btn {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 54px;
+    height: 26px;
+    line-height: 25px;
+    font-size: 10px;
+    font-style: normal;
+  }
+
+  .header__nav {
+    height: 25px;
+    gap: 24px;
+  }
+}

@@ -1,0 +1,147 @@
+.tech {
+  color: #fff;
+  background-color: #272727;
+}
+
+.tech__container {
+  margin-left: 70px;
+  margin-right: 70px;
+  justify-content: center;
+  text-align: center;
+}
+
+.tech__title {
+  padding-top: 100px;
+}
+
+.tech__name {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.tech__list {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 101px;
+}
+
+.tech__list-block {
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 10px;
+  max-width: 100%;
+}
+
+.tech__list-item {
+  display: grid;
+  place-items: center;
+  background-color: #303030;
+  color: #ffffff;
+  min-width: 90px;
+  padding: 21px 0;
+  border-radius: 10px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.56px;
+}
+
+.tech__block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tech__block-title {
+  padding: 90px 0 26px 0;
+  margin: 0;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: -2px;
+}
+
+.tech__block-subtitle {
+  max-width: 460px;
+  padding: 0 0 100px 0;
+  margin: 0;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.56px;
+}
+
+@media screen and (max-width: 824px) {
+  .tech__container {
+    margin: 0 50px;
+  }
+
+  .tech__title {
+    padding-top: 90px;
+  }
+
+  .tech__list {
+    padding-bottom: 90px;
+  }
+
+  .tech__block-title {
+    padding-top: 80px;
+    padding-bottom: 22px;
+    letter-spacing: -2px;
+  }
+
+  .tech__block-subtitle {
+    max-width: 460px;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.48px;
+    padding-bottom: 83px;
+  }
+
+  .tech__list-item {
+    font-size: 12px;
+    min-width: 84px;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .tech__container {
+    margin: 0 18px;
+  }
+
+  .tech__block-title {
+    padding-top: 60px;
+    padding-bottom: 24px;
+    font-size: 30px;
+    line-height: normal;
+    letter-spacing: -1.2px;
+  }
+
+  .tech__block-subtitle {
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: -0.44px;
+    padding-bottom: 50px;
+  }
+
+  .tech__list {
+    margin: 0 53px;
+  }
+
+  .tech__list-block {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .tech__list-block {
+    justify-content: flex-start;
+  }
+}

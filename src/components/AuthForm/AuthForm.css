@@ -1,0 +1,194 @@
+/* Общие стили */
+.auth-page__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 70px;
+  height: 100vh;
+  background-color: #202020;
+  max-width: 396px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.auth-page__groupers {
+  height: 266px;
+}
+
+.auth-page__logo {
+  align-self: flex-start;
+  width: 30px;
+}
+
+.auth-page__logo:hover {
+  opacity: 0.8;
+}
+
+.auth-page__form h1 {
+  margin: 36px 0 36px 0;
+  padding: 0;
+  align-self: flex-start;
+  color: #fff;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.auth-page__group {
+  position: relative;
+}
+
+.auth-page__label {
+  color: #8b8b8b;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.auth-page__input {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  padding-left: 15px;
+  width: 381px;
+  height: 43px;
+  border-radius: 8px;
+  background: #2f2f2f;
+  color: #fff;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.auth-page__input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #5c464c;
+}
+
+.auth-page__validation-message {
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
+  margin-bottom: -9px;
+  margin-left: 1px;
+  color: #ee3465;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  display: block;
+  height: 14px;
+  max-width: 396px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: normal;
+}
+
+.auth-page__button {
+  margin-top: 74px;
+  max-width: 396px;
+  width: 100%;
+  height: 45px;
+  flex-shrink: 0;
+  border-radius: 3px;
+  background: #4285f4;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.auth-page__button:hover {
+  background-color: #357ae8;
+}
+
+.auth-page__form p {
+  color: #8b8b8b;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 16px 0 0 0;
+}
+
+.auth-page__form p a {
+  margin: 0;
+  color: #4285f4;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-page__form p a:hover {
+  opacity: 0.8;
+}
+
+.auth-page__input:invalid {
+  color: #ee3465;
+}
+
+/* Медиа-запросы */
+@media screen and (max-width: 895px) {
+  .auth-page__form {
+    margin-top: 232px;
+  }
+}
+
+@media screen and (max-width: 443px) {
+  .auth-page__form {
+    margin-top: 55px;
+    max-width: 320px;
+  }
+
+  .auth-page__form h1 {
+    align-self: center;
+    margin: 48px 0 72px 0;
+  }
+
+  .auth-page__logo {
+    align-self: center;
+    margin-right: 9px;
+  }
+
+  .auth-page__button {
+    margin-top: 165px;
+    max-width: 260px;
+    font-size: 12px;
+  }
+
+  .auth-page__form p {
+    font-size: 12px;
+  }
+
+  .auth-page__group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 7px;
+    margin-left: 0;
+  }
+
+  .auth-page__label {
+    margin-bottom: 5px;
+  }
+
+  .auth-page__input {
+    margin-top: 5px;
+    max-width: 243px;
+  }
+
+  .auth-page__validation-message {
+    max-width: 260px;
+  }
+}

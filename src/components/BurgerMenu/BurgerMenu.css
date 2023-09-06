@@ -1,0 +1,148 @@
+.burger-menu__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  display: none;
+}
+
+.burger-menu__overlay.open {
+  display: block;
+}
+
+.burger-menu__button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  display: none;
+  padding: 0;
+}
+
+.burger-menu__link {
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+  font-feature-settings: "clig" off, "liga" off;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.burger-menu__link:hover {
+  opacity: 0.8;
+}
+
+.burger-menu__li {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 28px;
+}
+
+.burger-menu__li:last-child {
+  margin: 0;
+}
+
+.burger-menu__link.active {
+  border-bottom: 2px solid #fff;
+  padding-bottom: 3px;
+}
+
+.burger-menu__nav {
+  padding: 91px 0 0 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+}
+
+.burger-menu__button:hover {
+  opacity: 0.8;
+}
+
+.burger-menu__btn-close:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.burger-menu__btn-close {
+  width: 32px;
+  margin-left: auto;
+  margin-top: 22.4px;
+  margin-right: 22.4px;
+  margin-bottom: 0;
+}
+
+.burger-menu__container {
+  max-width: 520px;
+  display: none;
+  position: absolute;
+  justify-content: flex-start;
+  align-items: center;
+  top: 0;
+  right: 0;
+  background-color: #202020;
+  height: 100%;
+  z-index: 2;
+  width: 100%;
+}
+
+.burger-menu__account {
+  text-align: center;
+  margin-top: 606px;
+}
+
+.burger-menu__account:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 895px) {
+  .burger-menu__container {
+    position: fixed;
+  }
+
+  .burger-menu__container.open {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .burger-menu__button {
+    display: block;
+    margin-right: 7px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .burger-menu__button img {
+    width: 26px;
+  }
+
+  .burger-menu__btn-close {
+    width: 30px;
+    margin-left: auto;
+    margin-top: 15.4px;
+    margin-right: 14.4px;
+    margin-bottom: 0;
+  }
+
+  .burger-menu__nav {
+    padding: 84px 0 0 0;
+  }
+
+  .burger-menu__li {
+    margin-bottom: 25px;
+  }
+
+  .burger-menu__link.active {
+    padding-bottom: 6px;
+  }
+
+  .burger-menu__account {
+    margin-top: 428px;
+  }
+}

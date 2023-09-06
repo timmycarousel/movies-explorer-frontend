@@ -1,0 +1,127 @@
+.profile {
+  text-align: center;
+  padding-top: 75px;
+}
+
+.profile__info {
+  padding-top: 123px;
+  max-width: 410px;
+  margin: 0 auto;
+}
+
+.profile__title {
+  margin: 0 auto 0 auto;
+  color: #fff;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  max-width: 410px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile__info-row {
+  border-bottom: 1px solid #424242;
+  padding-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 17px;
+}
+
+.profile__info-row-email {
+  border: none;
+}
+
+.profile__info-label,
+.profile__info-value {
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.profile__info-value {
+  width: 90%;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  text-align: right;
+  font-weight: 400;
+}
+
+.profile__actions {
+  margin-top: 17px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile__action-button,
+.profile__info-button {
+  max-width: 410px;
+  margin: 0 auto;
+  border: none;
+  background-color: inherit;
+  color: #fff;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: normal;
+}
+.profile__info-button {
+  margin: 185px auto 0 auto;
+}
+
+.profile__action-button {
+  color: #ee3465;
+  margin-top: -3px;
+}
+
+.profile__action-button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 895px) {
+  .profile {
+    padding-top: 237px;
+  }
+
+  .profile__info-button {
+    margin: 176px auto 0 auto;
+  }
+
+  .profile__info {
+    padding-top: 96px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .profile__info-value {
+    width: 50%;
+  }
+
+  .profile {
+    padding-top: 71px;
+  }
+
+  .profile__action-button {
+    font-size: 12px;
+  }
+
+  .profile__action-button:last-child {
+    margin-top: -2px;
+  }
+
+  .profile__info-button {
+    font-size: 12px;
+    margin: 345px auto 0 auto;
+  }
+
+  .profile__info {
+    padding-top: 80px;
+    max-width: 260px;
+  }
+}

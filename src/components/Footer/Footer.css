@@ -1,0 +1,102 @@
+.footer {
+  background-color: #202020;
+  padding-bottom: 20px;
+  color: #fff;
+}
+.footer__list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style-type: none;
+  gap: 20px;
+}
+
+.footer__title {
+  margin: 0;
+  color: #8b8b8b;
+  text-align: center;
+  font-feature-settings: "clig" off, "liga" off;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #424242;
+}
+
+.footer__copyright {
+  margin: 0;
+  font-size: 13px;
+}
+
+.footer__container {
+  margin-left: 70px;
+  margin-right: 70px;
+}
+
+.footer__block {
+  padding-top: 21px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__nav {
+  margin-top: -2px;
+}
+
+.footer__link {
+  margin: 0;
+  font-size: 13px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer__link:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 824px) {
+  .footer__container {
+    margin: 0 30px;
+  }
+
+  .footer__block {
+    padding-top: 17px;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .footer__container {
+    margin: 149px 10px 0 10px;
+  }
+  .footer__link {
+    font-size: 12px;
+  }
+
+  .footer__title {
+    font-size: 12px;
+    padding-bottom: 22px;
+  }
+
+  .footer__block {
+    padding-top: 30px;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .footer__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+  }
+  .footer__nav {
+    margin-bottom: 31px;
+    margin-top: -3px;
+  }
+  .footer__copyright {
+    font-size: 12px;
+    margin-right: 1px;
+  }
+}

@@ -1,0 +1,31 @@
+.saved-movies .movie-card__like-button {
+  background-image: url("../../images/d4.svg");
+  opacity: 0;
+}
+
+.saved-movies .movie-card:hover .movie-card__like-button {
+  background-image: url("../../images/d4.svg");
+  opacity: 1;
+}
+
+.saved-movies .movie-card:hover .movie-card__like-button:hover {
+  background-image: url("../../images/d4.svg");
+  opacity: 0.8;
+}
+
+.saved-movies .movie-card:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 400px) {
+  .saved-movies .movies-card-list__container {
+    margin-bottom: 95px;
+  }
+  /* .saved-movies .movie-card.liked .movies-card-list {
+    margin-bottom: 200px;
+  } */
+  .saved-movies .movie-card.unliked .movie-card__like-button {
+    background-image: url("../../images/d4.svg");
+    opacity: 1;
+  }
+}

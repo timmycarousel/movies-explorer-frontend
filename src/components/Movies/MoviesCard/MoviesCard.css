@@ -1,0 +1,123 @@
+/* Добавьте переменные для фоновых изображений */
+:root {
+  --liked-icon: url("../../../images/likedIkon.svg");
+  --unliked-icon: url("../../../images/unlikedIcon.svg");
+}
+
+.movie-card {
+  background-color: #222;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: center;
+  max-width: 364px;
+  height: 281px;
+}
+
+.movie-card img {
+  width: 100%;
+}
+
+.movie-card__info {
+  padding: 0;
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 330px;
+  width: 100%;
+}
+
+.movie-card__title {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Удалите стили для .movie-card__like-button и используйте фоновые изображения */
+.movie-card__like-button {
+  width: 26px;
+  height: 30px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: inherit;
+}
+
+.movie-card.liked .movie-card__like-button {
+  background-image: var(--liked-icon);
+}
+
+.movie-card.unliked .movie-card__like-button {
+  background-image: var(--unliked-icon);
+}
+
+.movie-card__like-button:hover {
+  opacity: 0.8;
+}
+
+.movie-card__duration {
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
+  margin-left: 16px;
+  color: #8b8b8b;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@media screen and (max-width: 895px) {
+  .movie-card {
+    width: 339px;
+    height: 262px;
+  }
+
+  .movie-card__info {
+    max-width: 307px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .movie-card {
+    max-height: 237px;
+  }
+
+  .movie-card__title {
+    font-size: 12px;
+    padding-bottom: 3px;
+  }
+
+  .movie-card__info {
+    margin-left: 14px;
+    max-width: 98%;
+  }
+
+  .movie-card__like-button {
+    width: 30px;
+    height: 30px;
+    margin-right: 18px;
+  }
+
+  .movie-card__duration {
+    font-size: 10px;
+    margin-top: 6px;
+    margin-left: 14px;
+  }
+}
