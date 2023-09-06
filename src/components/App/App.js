@@ -27,10 +27,10 @@ function App() {
         <Routes>
           <Route path="/signup" element={<Register />} />
           <Route path="/signin" element={<Login />} />
-          <Route path="/" element={<Main />} />
           <Route path="/movies" element={<AllMoviesCardList />} />
           <Route path="/saved-movies" element={<SavedMovies />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/" element={<Main />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

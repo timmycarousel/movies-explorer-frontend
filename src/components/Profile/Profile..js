@@ -1,102 +1,41 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const navigate = useNavigate();
 
-  const [isEditing, setIsEditing] = useState(false);
-  const [profileData, setProfileData] = useState({
-    name: "Виталий",
-    email: "pochta@yandex.ru",
-  });
-
   const handleEditProfileClick = () => {
-    setIsEditing(true);
+    navigate("/profile");
   };
 
-  const handleSaveProfileClick = () => {
-    setIsEditing(false);
-  };
-
-  const handleCancelEditClick = () => {
-    setIsEditing(false);
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setProfileData({
-      ...profileData,
-      [name]: value,
-    });
+  const handleSignOutClick = () => {
+    navigate("/");
   };
 
   return (
     <section className="profile">
-      <h1 className="profile__title">Привет, {profileData.name}!</h1>
-      {isEditing ? (
-        <form className="profile__edit-form">
-          <div className="profile__edit-row">
-            <label className="profile__edit-label">Имя</label>
-            <input
-              type="text"
-              name="name"
-              value={profileData.name}
-              onChange={handleInputChange}
-              className="profile__edit-input"
-            />
-          </div>
-          <div className="profile__edit-row">
-            <label className="profile__edit-label">E-mail</label>
-            <input
-              type="email"
-              name="email"
-              value={profileData.email}
-              onChange={handleInputChange}
-              className="profile__edit-input"
-            />
-          </div>
-          <div className="profile__edit-actions">
-            <button
-              className="profile__edit-button"
-              onClick={handleSaveProfileClick}
-              type="button"
-            >
-              Сохранить
-            </button>
-            <button
-              className="profile__edit-button"
-              onClick={handleCancelEditClick}
-              type="button"
-            >
-              Отмена
-            </button>
-          </div>
-        </form>
-      ) : (
-        <div className="profile__info">
-          <div className="profile__info-row">
-            <span className="profile__info-label">Имя</span>
-            <span className="profile__info-value">{profileData.name}</span>
-          </div>
-          <div className="profile__info-row">
-            <span className="profile__info-label">E-mail</span>
-            <span className="profile__info-value">{profileData.email}</span>
-          </div>
+      <h1 className="profile__title">Привет, Виталий!</h1>
+      <div className="profile__info">
+        <div className="profile__info-row">
+          <span className="profile__info-label">Имя</span>
+          <span className="profile__info-value">Виталий</span>
         </div>
-      )}
+        <div className="profile__info-row">
+          <span className="profile__info-label">E-mail</span>
+          <span className="profile__info-value">pochta@yandex.ru</span>
+        </div>
+      </div>
       <div className="profile__actions">
-        {!isEditing && (
-          <button
-            className="profile__action-button"
-            onClick={handleEditProfileClick}
-            type="button"
-          >
-            Редактировать
-          </button>
-        )}
         <button
           className="profile__action-button"
-          onClick={() => navigate("/")}
+          onClick={handleEditProfileClick}
+          type="button"
+        >
+          Редактировать
+        </button>
+        <button
+          className="profile__action-button"
+          onClick={handleSignOutClick}
           type="button"
         >
           Выйти из аккаунта

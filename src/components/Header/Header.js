@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
 function Header({ isLoggedIn }) {
-  // isLoggedIn = true;
+  isLoggedIn = true;
   const url = useLocation();
   const isHomepage = url.pathname === "/";
   const headerClass =
