@@ -23,7 +23,7 @@ export default function SearchForm() {
           id="shortFilmToggle"
         />
         <label className="search-form__toggle-label" htmlFor="shortFilmToggle">
-          <div className="search-form__toggle-slider"></div>
+          <span className="search-form__toggle-slider"></span>
         </label>
         <span className="search-form__toggle-text">Короткометражки</span>
       </div>
