@@ -7,7 +7,9 @@ import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import Footer from "../Footer/Footer";
-import AllMoviesCardList from "../AllMoviesCardList/AllMoviesCardList";
+// import AllMoviesCardList from "../AllMoviesCardList/AllMoviesCardList";
+
+import Movies from "../Movies/Movies";
 
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
@@ -27,11 +29,11 @@ function App() {
         <Routes>
           <Route path="/signup" element={<Register />} />
           <Route path="/signin" element={<Login />} />
-          <Route path="/movies" element={<AllMoviesCardList />} />
+          <Route path="/movies" element={<Movies />} />
           <Route path="/saved-movies" element={<SavedMovies />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/" element={<Main />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/" element={<Main />} />
         </Routes>
       </main>
       {showFooter && <Footer />}

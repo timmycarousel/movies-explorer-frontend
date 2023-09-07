@@ -12,28 +12,20 @@
 //   );
 // }
 
-import React, { useEffect, useState } from "react";
-import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
-import SearchForm from "../Movies/SearchForm/SearchForm";
+// import React from "react";
+// import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
+// import SearchForm from "../Movies/SearchForm/SearchForm";
+// import { getFilteredMoviesFromLocalStorage } from "../../utils/movieUtils";
+// import { useMovieSearch } from "../../utils/searchMovies";
 
-export default function AllMoviesCardList() {
-  const [filteredMovies, setFilteredMovies] = useState([]);
+// export default function AllMoviesCardList() {
+//   const filteredMovies = getFilteredMoviesFromLocalStorage();
+//   const { isLoading } = useMovieSearch();
 
-  useEffect(() => {
-    // Получаем отфильтрованные фильмы из локального хранилища
-    const filteredMoviesFromLocalStorage = JSON.parse(
-      localStorage.getItem("filteredMovies")
-    );
-
-    if (filteredMoviesFromLocalStorage) {
-      setFilteredMovies(filteredMoviesFromLocalStorage);
-    }
-  }, []);
-
-  return (
-    <div className="all-movies">
-      <SearchForm />
-      <MoviesCardList movies={filteredMovies} />
-    </div>
-  );
-}
+//   return (
+//     <div className="all-movies">
+//       <SearchForm />
+//       <MoviesCardList movies={filteredMovies} isLoading={isLoading} />
+//     </div>
+//   );
+// }

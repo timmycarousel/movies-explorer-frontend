@@ -1,12 +1,13 @@
+// MoviesCardList.js
 import React, { useState, useEffect } from "react";
-import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../../Preloader/Preloader";
+import { renderMovies } from "../../../utils/movieUtils";
 
-export default function MoviesCardList({ movies }) {
+export default function MoviesCardList({ isLoading, movies }) {
   const [visibleMovies, setVisibleMovies] = useState(
     window.innerWidth <= 400 ? 5 : window.innerWidth <= 895 ? 8 : 12
   );
-  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 400) {
@@ -20,12 +21,6 @@ export default function MoviesCardList({ movies }) {
 
     handleResize();
     window.addEventListener("resize", handleResize);
-
-    // Эмуляция задержки загрузки данных
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -37,15 +32,7 @@ export default function MoviesCardList({ movies }) {
 
   return (
     <section className="movies-card-list">
-      {isLoading ? (
-        <Preloader />
-      ) : (
-        <div className="movies-card-list__container">
-          {movies.slice(0, visibleMovies).map((movie, index) => (
-            <MoviesCard key={index} movie={movie}></MoviesCard>
-          ))}
-        </div>
-      )}
+      {isLoading ? <Preloader /> : renderMovies(movies.slice(0, visibleMovies))}
       {visibleMovies < movies.length && (
         <button
           className="movies-card-list__button"
