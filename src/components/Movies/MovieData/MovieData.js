@@ -1,6 +1,7 @@
 const movieData = [
   {
-    imageUrl: "../../../images/pic__COLOR_pic.png",
+    imageUrl:
+      "https://api.nomoreparties.co/uploads/thumbnail_881707734_640_d6a3a43358.jpeg",
     title: "33 слова о дизайне",
     duration: 107,
     saved: true,

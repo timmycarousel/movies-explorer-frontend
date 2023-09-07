@@ -12,18 +12,31 @@
   align-items: flex-start;
   text-align: center;
   max-width: 364px;
+  width: 100%;
   height: 281px;
 }
 
-.movie-card img {
+.movie-card-img {
+  width: 339px;
+  height: 190px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.movie-card-img a:hover {
+  opacity: 0.8;
+}
+
+.movie-card-img img {
   width: 100%;
+  height: 100%;
 }
 
 .movie-card__info {
   padding: 0;
   margin-left: 16px;
   margin-right: 16px;
-  margin-top: 8px;
+  margin-top: 22px;
   display: flex;
   justify-content: space-between;
   align-items: center;
