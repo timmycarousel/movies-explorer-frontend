@@ -8,26 +8,32 @@ export default function Movies() {
   const [isLoading, setIsLoading] = useState(true);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isShortFilm, setIsShortFilm] = useState(false);
+  const [isToggled, setIsToggled] = useState(false);
 
-  // Функция для загрузки фильмов из локального хранилища
-  const loadMoviesFromLocalStorage = () => {
-    const localMovies = JSON.parse(localStorage.getItem("filteredMovies"));
-    return localMovies || [];
-  };
+  const localStorageIsToggled = localStorage.getItem("isToggled");
+  const localStorageMovies = JSON.parse(localStorage.getItem("filteredMovies"));
+  useEffect(() => {
+    if (localStorageIsToggled) {
+      setIsToggled(true);
+    } else {
+      setIsToggled(false);
+    }
+  }, [localStorageIsToggled]);
 
   useEffect(() => {
+    setIsLoading(true);
     // Загрузка фильмов из локального хранилища при монтировании компонента
     const localMovies = loadMoviesFromLocalStorage();
-    setFilteredMovies(localMovies); // Установите фильмы из локального хранилища в состояние
-    setIsLoading(false); // Устанавливаем isLoading в false, так как фильмы уже загружены
+    setFilteredMovies(localMovies);
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
     // Вынесем запрос к API в отдельную функцию
     const fetchMovies = () => {
+      setIsLoading(true);
       moviesApi
-        .getMovies(searchQuery, isShortFilm) // Передаем параметры поиска
+        .getMovies() // Передаем параметры поиска
         .then((data) => {
           setMoviesList(data);
           setIsLoading(false);
@@ -38,9 +44,33 @@ export default function Movies() {
         });
     };
 
-    // Вызываем fetchMovies при монтировании компонента и при изменении searchQuery и isShortFilm
+    // Вызываем fetchMovies при изменении searchQuery и isShortFilm
     fetchMovies();
-  }, [searchQuery, isShortFilm]);
+  }, []);
+
+  useEffect(() => {
+    handleLocalStorageData();
+  }, []);
+
+  // Функция для загрузки фильмов из локального хранилища
+  const loadMoviesFromLocalStorage = () => {
+    const localMovies = JSON.parse(localStorage.getItem("filteredMovies"));
+    return localMovies || [];
+  };
+
+  function handleLocalStorageData() {
+    const localStorageMovies = JSON.parse(
+      localStorage.getItem("filteredMovies")
+    );
+    const localStorageQuery = localStorage.getItem("query");
+
+    if (localStorageMovies === null) {
+      return;
+    }
+
+    setSearchQuery(localStorageQuery || ""); // Устанавливаем значение в searchQuery
+    setFilteredMovies(localStorageMovies);
+  }
 
   function handleMovieSearch() {
     const filtered = moviesList.filter((movie) => {
@@ -49,9 +79,7 @@ export default function Movies() {
         movie.nameEN.toLowerCase().includes(searchQuery.toLowerCase()) ||
         movie.director.toLowerCase().includes(searchQuery.toLowerCase()) ||
         movie.description.toLowerCase().includes(searchQuery.toLowerCase());
-
-      if (isShortFilm) {
-        // Если включена кнопка короткометражных фильмов, фильтруем по длительности
+      if (isToggled) {
         return isMatching && movie.duration < 35;
       } else {
         return isMatching;
@@ -59,16 +87,33 @@ export default function Movies() {
     });
 
     setFilteredMovies(filtered);
-    localStorage.setItem("filteredMovies", JSON.stringify(filtered)); // Сохраните фильмы в локальное хранилище
+    localStorage.setItem("filteredMovies", JSON.stringify(filtered));
+    localStorage.setItem("query", searchQuery); // Сохраняем searchQuery в локальное хранилище
   }
 
-  function handleShortFilmToggle() {
-    setIsShortFilm(!isShortFilm);
+  function filterShortFilms() {
+    return filteredMovies.filter((movie) => movie.duration < 35);
+    // handleMovieSearch();
   }
 
-  function handleSearchChange(value) {
-    // Обновляем searchQuery при изменении значения поля ввода
+  const handleSearchChange = (evt) => {
+    const value = evt.target.value;
     setSearchQuery(value);
+  };
+
+  function handleToggleSwitch() {
+    if (isToggled === false) {
+      const shortMoviesList = filterShortFilms();
+      setIsToggled(true);
+      setFilteredMovies(shortMoviesList);
+      localStorage.setItem("isToggled", true);
+      localStorage.setItem("shortMovies", JSON.stringify(shortMoviesList));
+    } else {
+      setIsToggled(false);
+      setFilteredMovies(localStorageMovies);
+      localStorage.removeItem("isToggled");
+      localStorage.removeItem("shortMovies");
+    }
   }
 
   return (
@@ -76,15 +121,17 @@ export default function Movies() {
       <SearchForm
         onSearchSubmit={handleMovieSearch}
         searchQuery={searchQuery}
-        onShortFilmToggle={handleShortFilmToggle}
-        isToggled={isShortFilm}
-        handleSearchChange={handleSearchChange} // Передаем функцию handleSearchChange
+        isToggled={isToggled}
+        onToggle={handleToggleSwitch}
+        handleSearchChange={handleSearchChange}
       />
       {filteredMovies.length > 0 ? (
         <MoviesCardList movies={filteredMovies} isLoading={isLoading} />
       ) : (
-        <p>No movies found.</p>
+        <p className="movies__no-films">Ничего не найдено</p>
       )}
     </main>
   );
 }
+
+//СДЕЛАТЬ пиксель перфект

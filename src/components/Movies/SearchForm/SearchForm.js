@@ -4,34 +4,19 @@ import find from "../../../images/find.svg";
 export default function SearchForm({
   searchQuery,
   onSearchSubmit,
-  onShortFilmToggle,
   isToggled,
+  onToggle,
   handleSearchChange,
 }) {
-  // Восстанавливаем последний запрос поисковой строки и состояние переключателя из локального хранилища
-  useEffect(() => {
-    const storedSearchQuery = localStorage.getItem("lastSearchQuery") || "";
-    const storedIsShortFilm = localStorage.getItem("isShortFilm") === "true";
-
-    if (storedSearchQuery !== searchQuery) {
-      // Обновляем searchQuery, если значение из локального хранилища отличается
-      handleSearchChange(storedSearchQuery);
-    }
-
-    if (storedIsShortFilm !== isToggled) {
-      // Обновляем состояние переключателя, если значение из локального хранилища отличается
-      onShortFilmToggle();
-    }
-  }, []);
-
+  const [validationError, setValidationError] = useState("");
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onSearchSubmit(searchQuery); // Передаем searchQuery в родительский компонент
-  };
-
-  const handleChange = (evt) => {
-    // Вызываем обработчик onChange с новым значением
-    handleSearchChange(evt.target.value);
+    if (searchQuery.slice(1, -1) === "") {
+      setValidationError("Нужно ввести ключевое слово");
+      return;
+    }
+    setValidationError("");
+    onSearchSubmit(); // Передаем searchQuery в родительский компонент
   };
 
   return (
@@ -43,7 +28,7 @@ export default function SearchForm({
           placeholder="Фильм"
           required
           value={searchQuery}
-          onChange={handleChange}
+          onChange={handleSearchChange}
           autoComplete="off"
         />
         <button className="search-form__button" type="submit">
@@ -55,7 +40,7 @@ export default function SearchForm({
           className="search-form__toggle-checkbox"
           type="checkbox"
           id="shortFilmToggle"
-          onChange={onShortFilmToggle}
+          onChange={onToggle}
           checked={isToggled}
         />
         <label className="search-form__toggle-label" htmlFor="shortFilmToggle">

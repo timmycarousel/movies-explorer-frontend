@@ -30,6 +30,15 @@ export default function MoviesCardList({ isLoading, movies }) {
     setVisibleMovies(visibleMovies + 12);
   };
 
+  useEffect(() => {
+    // В этой функции можно выполнить действия при изменении isLoading
+    if (isLoading) {
+      console.log("Излоадинг тру");
+    } else {
+      console.log("Излоадинг фалс");
+    }
+  }, [isLoading]); // Зависимость от isLoading
+
   return (
     <section className="movies-card-list">
       {isLoading ? <Preloader /> : renderMovies(movies.slice(0, visibleMovies))}
