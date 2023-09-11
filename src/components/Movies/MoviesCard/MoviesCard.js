@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-
 import { movieServer } from "../../../utils/constants";
+import { saveMovie, removeMovie } from "../../../utils/MainApi"; // Подключите ваши функции для сохранения и удаления фильма
 
 function MovieCard({ movie }) {
   const openPopup = (url) => {
@@ -13,7 +13,25 @@ function MovieCard({ movie }) {
   const minutes = movie.duration % 60;
 
   const toggleLike = () => {
-    setLiked(!liked);
+    if (liked) {
+      // Если уже лайкнут, то удаляем фильм
+      removeMovie(movie._id) // Используйте соответствующий идентификатор фильма
+        .then(() => {
+          setLiked(false); // Обновляем состояние после успешного удаления
+        })
+        .catch((error) => {
+          console.error("Ошибка при удалении фильма:", error);
+        });
+    } else {
+      // Если не лайкнут, то сохраняем фильм
+      saveMovie(movie)
+        .then(() => {
+          setLiked(true); // Обновляем состояние после успешного сохранения
+        })
+        .catch((error) => {
+          console.error("Ошибка при сохранении фильма:", error);
+        });
+    }
   };
 
   return (
