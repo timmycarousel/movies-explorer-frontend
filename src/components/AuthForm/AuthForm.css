@@ -109,9 +109,17 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+.auth-page__button:disabled {
+  background-color: #ccc;
+}
+
+.auth-page__error-message {
+  color: #ee3465;
+  margin-bottom: -37px;
+}
 
 .auth-page__button:hover {
-  background-color: #357ae8;
+  opacity: 0.8;
 }
 
 .auth-page__form p {

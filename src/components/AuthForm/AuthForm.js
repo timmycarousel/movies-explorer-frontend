@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import logo from "../../images/logo.svg";
+import validator from "validator";
 
 const AuthForm = ({
   isSignUp,
@@ -7,24 +8,49 @@ const AuthForm = ({
   handleInputChange,
   values,
   buttonText,
+  errorMessage,
 }) => {
   const [validationMessages, setValidationMessages] = useState({
-    email: "Обязательное поле",
     name: "Обязательное поле",
+    email: "Обязательное поле",
     password: "Обязательное поле",
   });
 
-  const handleInputChangeWithValidation = (e) => {
-    const { name, value } = e.target;
-    handleInputChange(e);
+  console.log(errorMessage);
 
-    const isValid = e.target.checkValidity();
-    updateValidationMessage(name, isValid ? "" : e.target.validationMessage);
-  };
+  const [isValidForm, setIsValidForm] = useState(false); // Состояние для активации кнопки
 
-  const customValidation = (e, message) => {
-    e.target.setCustomValidity(message);
-  };
+  // Хук useCallback для оптимизации производительности
+  const handleInputChangeWithValidation = useCallback(
+    (e) => {
+      const { name, value } = e.target;
+      handleInputChange(e);
+
+      let isValid = e.target.checkValidity();
+
+      if (name === "email") {
+        isValid = validator.isEmail(value);
+        updateValidationMessage(
+          name,
+          isValid ? "" : "Введите корректный адрес электронной почты"
+        );
+      } else if (name === "name") {
+        isValid = /^[a-zA-Zа-яА-ЯёЁ\s-]+$/.test(value);
+        updateValidationMessage(
+          name,
+          isValid
+            ? ""
+            : "Поле 'Имя' может содержать только латиницу, кириллицу, пробел или дефис"
+        );
+      } else {
+        updateValidationMessage(
+          name,
+          isValid ? "" : e.target.validationMessage
+        );
+      }
+    },
+    [handleInputChange]
+  );
 
   const updateValidationMessage = (name, message) => {
     setValidationMessages((messages) => ({
@@ -32,6 +58,14 @@ const AuthForm = ({
       [name]: message,
     }));
   };
+
+  useEffect(() => {
+    // Проверяем все поля на валидность и устанавливаем состояние для активации кнопки
+    const isFormValid =
+      document.querySelector(".auth-page__form").checkValidity() &&
+      Object.values(validationMessages).every((message) => !message);
+    setIsValidForm(isFormValid);
+  }, [validationMessages]);
 
   const h1Text = isSignUp ? "Добро пожаловать!" : "Рады видеть!";
 
@@ -50,7 +84,10 @@ const AuthForm = ({
                 type="text"
                 name="name"
                 value={values.name}
-                onChange={handleInputChangeWithValidation}
+                onChange={(e) => {
+                  handleInputChange(e);
+                  handleInputChangeWithValidation(e);
+                }}
                 placeholder="Введите ваше имя"
                 required
                 className="auth-page__input"
@@ -68,18 +105,13 @@ const AuthForm = ({
               type="email"
               name="email"
               value={values.email}
-              onChange={handleInputChangeWithValidation}
+              onChange={(e) => {
+                handleInputChange(e);
+                handleInputChangeWithValidation(e);
+              }}
               placeholder="Введите e-mail"
               required
               className="auth-page__input"
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-              onInvalid={(e) =>
-                customValidation(
-                  e,
-                  "Введите корректный адрес электронной почты"
-                )
-              }
-              onInput={(e) => e.target.setCustomValidity("")}
             />
             <span className="auth-page__validation-message">
               {validationMessages.email}
@@ -92,20 +124,28 @@ const AuthForm = ({
               name="password"
               placeholder="Введите пароль"
               value={values.password}
-              onChange={handleInputChangeWithValidation}
+              onChange={(e) => {
+                handleInputChange(e);
+                handleInputChangeWithValidation(e);
+              }}
               required
               className="auth-page__input"
               minLength="6"
               maxLength="20"
-              onInvalid={(e) => customValidation(e, "Что-то пошло не так...")}
-              onInput={(e) => e.target.setCustomValidity("")}
             />
             <span className="auth-page__validation-message">
               {validationMessages.password}
             </span>
           </div>
         </div>
-        <button type="submit" className="auth-page__button">
+        {errorMessage && ( // Отображаем errorMessage, если он существует
+          <div className="auth-page__error-message">{errorMessage}</div>
+        )}
+        <button
+          type="submit"
+          className={`auth-page__button ${isValidForm ? "" : "disabled"}`}
+          disabled={!isValidForm}
+        >
           {buttonText}
         </button>
         {isSignUp ? (

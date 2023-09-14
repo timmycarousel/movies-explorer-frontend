@@ -1,6 +1,7 @@
 import { movieServer } from "./constants";
 
-const BASE_URL = "http://api.moviesexplorer.nomoredomainsicu.ru";
+// const BASE_URL = "http://api.moviesexplorer.nomoredomainsicu.ru";
+const BASE_URL = "http://localhost:3001";
 const jsonHeaders = {
   "Content-Type": "application/json",
   Accept: "application/json",
@@ -11,6 +12,64 @@ const checkResponse = (res) => {
     return res.json();
   }
   return Promise.reject(`Ошибка: ${res.status}`);
+};
+
+// Регистрация пользователя
+export const register = (name, email, password) => {
+  return fetch(`${BASE_URL}/signup`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ name, email, password }),
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        return response.json().then((errorData) => {
+          return { error: errorData.message }; // Возвращаем объект с ошибкой
+        });
+      }
+    })
+    .then((data) => {
+      if (data.error) {
+        throw new Error(data.error);
+      }
+      localStorage.setItem("token", data.token);
+      return data;
+    });
+};
+
+// Авторизация пользователя
+export const authorize = (email, password) => {
+  return fetch(`${BASE_URL}/signin`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ email, password }),
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        return response.json().then((errorData) => {
+          return { error: errorData.message }; // Возвращаем объект с ошибкой
+        });
+      }
+    })
+    .then((data) => {
+      if (data.error) {
+        throw new Error(data.error);
+      }
+      localStorage.setItem("token", data.token);
+      return data;
+    });
 };
 
 export function getMovies() {
