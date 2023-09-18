@@ -39,6 +39,8 @@ export const register = (name, email, password) => {
         throw new Error(data.error);
       }
       localStorage.setItem("token", data.token);
+      localStorage.setItem("userName", data.name);
+      localStorage.setItem("userEmail", data.email);
       return data;
     });
 };
@@ -68,6 +70,8 @@ export const authorize = (email, password) => {
         throw new Error(data.error);
       }
       localStorage.setItem("token", data.token);
+      localStorage.setItem("userName", data.name);
+      localStorage.setItem("userEmail", data.email);
       return data;
     });
 };

@@ -79,7 +79,8 @@
   margin-top: -3px;
 }
 
-.profile__action-button:hover {
+.profile__action-button:hover,
+.profile__info-button:hover {
   opacity: 0.8;
   cursor: pointer;
 }

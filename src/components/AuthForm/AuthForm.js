@@ -11,16 +11,14 @@ const AuthForm = ({
   errorMessage,
 }) => {
   const [validationMessages, setValidationMessages] = useState({
-    name: "Обязательное поле",
     email: "Обязательное поле",
     password: "Обязательное поле",
   });
 
   console.log(errorMessage);
 
-  const [isValidForm, setIsValidForm] = useState(false); // Состояние для активации кнопки
+  const [isValidForm, setIsValidForm] = useState(false);
 
-  // Хук useCallback для оптимизации производительности
   const handleInputChangeWithValidation = useCallback(
     (e) => {
       const { name, value } = e.target;
@@ -33,14 +31,6 @@ const AuthForm = ({
         updateValidationMessage(
           name,
           isValid ? "" : "Введите корректный адрес электронной почты"
-        );
-      } else if (name === "name") {
-        isValid = /^[a-zA-Zа-яА-ЯёЁ\s-]+$/.test(value);
-        updateValidationMessage(
-          name,
-          isValid
-            ? ""
-            : "Поле 'Имя' может содержать только латиницу, кириллицу, пробел или дефис"
         );
       } else {
         updateValidationMessage(
@@ -60,7 +50,6 @@ const AuthForm = ({
   };
 
   useEffect(() => {
-    // Проверяем все поля на валидность и устанавливаем состояние для активации кнопки
     const isFormValid =
       document.querySelector(".auth-page__form").checkValidity() &&
       Object.values(validationMessages).every((message) => !message);
@@ -138,7 +127,7 @@ const AuthForm = ({
             </span>
           </div>
         </div>
-        {errorMessage && ( // Отображаем errorMessage, если он существует
+        {errorMessage && (
           <div className="auth-page__error-message">{errorMessage}</div>
         )}
         <button

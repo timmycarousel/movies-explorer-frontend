@@ -1,25 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import validator from "validator"; // Импортируйте библиотеку для валидации
 
-export default function Profile() {
+export default function Profile(loggedIn) {
   const navigate = useNavigate();
-  const [name, setName] = useState("Виталий");
-  const [email, setEmail] = useState("pochta@yandex.ru");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    // Получаем значения из localStorage и устанавливаем их в состояние
+    const storedName = localStorage.getItem("userName");
+    const storedEmail = localStorage.getItem("userEmail");
+
+    if (storedName && storedEmail) {
+      setName(storedName);
+      setEmail(storedEmail);
+    }
+  }, []);
 
   const handleEditProfileClick = () => {
+    // Валидация полей "Имя" и "Email"
     const newName = document.querySelector(
       ".profile__info-value[name='name']"
     ).value;
-    setName(newName);
-
     const newEmail = document.querySelector(
       ".profile__info-value[name='email']"
     ).value;
+
+    if (!validateName(newName) || !validateEmail(newEmail)) {
+      // Валидация не прошла, обработка ошибок (например, показ сообщений об ошибке)
+      return;
+    }
+
+    // Переход к сохранению профиля, так как валидация пройдена
+    setName(newName);
     setEmail(newEmail);
+
+    // Сохраняем обновленные значения в localStorage
+    localStorage.setItem("userName", newName);
+    localStorage.setItem("userEmail", newEmail);
   };
 
   const handleSignOutClick = () => {
+    localStorage.clear();
     navigate("/");
+  };
+
+  const validateName = (name) => {
+    // Ваша логика валидации для имени
+    return /^[a-zA-Zа-яА-ЯёЁ\s-]+$/.test(name);
+  };
+
+  const validateEmail = (email) => {
+    // Используйте библиотеку validator для валидации email
+    return validator.isEmail(email);
   };
 
   const handleSubmit = (e) => {

@@ -5,8 +5,8 @@ import accountIconIn from "../../images/account-icon-in.svg";
 import { useLocation } from "react-router-dom";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
-function Header({ isLoggedIn }) {
-  isLoggedIn = true;
+function Header(loggedIn) {
+  // loggedIn = true;
   const url = useLocation();
   const isHomepage = url.pathname === "/";
   const headerClass =
@@ -14,7 +14,7 @@ function Header({ isLoggedIn }) {
     url.pathname === "/saved-movies" ||
     url.pathname === "/profile";
 
-  const accountIconSrc = isLoggedIn && isHomepage ? accountIconIn : accountIcon;
+  const accountIconSrc = loggedIn && isHomepage ? accountIconIn : accountIcon;
 
   return (
     <header className={`header ${headerClass ? "header_login" : ""}`}>
@@ -23,7 +23,7 @@ function Header({ isLoggedIn }) {
           <a className="header__link" href="/">
             <img src={logo} alt="Логотип" className="header__logo" />
           </a>
-          {isLoggedIn && headerClass && (
+          {loggedIn && headerClass && (
             <>
               <a className="header__btn header__btn_movies" href="/movies">
                 Фильмы
@@ -38,7 +38,7 @@ function Header({ isLoggedIn }) {
           )}
         </div>
         <nav className="header__nav">
-          {isLoggedIn ? (
+          {loggedIn ? (
             <>
               <a className="header__account" href="/profile">
                 <img

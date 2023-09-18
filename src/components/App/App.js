@@ -26,14 +26,12 @@ function App() {
   const showHeader = showHeaderPaths.includes(location.pathname);
   const showFooter = showFooterPaths.includes(location.pathname);
 
-  // const [imageTooltip, setImageTooltip] = useState("");
-  // const [textTooltip, setTextTooltip] = useState("");
-
   function handleRegister(name, email, password) {
     if (name || email || password) {
       return MainApi.register(name, email, password)
         .then(() => {
-          navigate("/signin");
+          // После успешной регистрации вызываем handleLogin
+          handleLogin(email, password);
         })
         .catch((error) => {
           setErrorMessage(error.message);
@@ -53,6 +51,10 @@ function App() {
           localStorage.setItem("userEmail", email);
           console.log("User email set in localStorage:", email);
 
+          if (data.name) {
+            localStorage.setItem("userName", data.name);
+          }
+
           navigate("/movies");
           setEmailUser(email);
           setLoggedIn(true);
@@ -63,7 +65,7 @@ function App() {
 
   return (
     <div className="app">
-      {showHeader && <Header />}
+      {showHeader && <Header loggedIn={loggedIn} />}
       <main className="content">
         <Routes>
           <Route
@@ -83,7 +85,7 @@ function App() {
           />
           <Route path="/movies" element={<Movies />} />
           <Route path="/saved-movies" element={<SavedMovies />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile loggedIn={loggedIn} />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/" element={<Main />} />
         </Routes>
