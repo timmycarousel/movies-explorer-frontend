@@ -34,15 +34,7 @@ export const register = (name, email, password) => {
         });
       }
     })
-    .then((data) => {
-      if (data.error) {
-        throw new Error(data.error);
-      }
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("userName", data.name);
-      localStorage.setItem("userEmail", data.email);
-      return data;
-    });
+    .then(checkResponse);
 };
 
 // Авторизация пользователя
@@ -65,16 +57,43 @@ export const authorize = (email, password) => {
         });
       }
     })
-    .then((data) => {
-      if (data.error) {
-        throw new Error(data.error);
-      }
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("userName", data.name);
-      localStorage.setItem("userEmail", data.email);
-      return data;
-    });
+    .then(checkResponse);
 };
+
+export function getUserData() {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "GET",
+    headers: {
+      ...jsonHeaders,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  })
+    .then(checkResponse)
+    .then((userData) => userData);
+}
+
+export function checkToken() {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "GET",
+    headers: {
+      ...jsonHeaders,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => data);
+}
+
+export function changeUserData({ name, email }) {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "PATCH",
+    headers: {
+      ...jsonHeaders,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify({ name, email }),
+  }).then(checkResponse);
+}
 
 export function getMovies() {
   return fetch(`${BASE_URL}/movies`, {
@@ -100,9 +119,7 @@ export const saveMovie = (movie) => {
       thumbnail: `${movieServer}${movie.image.url}`,
       movieId: movie.id,
     }),
-  })
-    .then(checkResponse)
-    .then((savedMovie) => (movie._id = savedMovie._id));
+  }).then(checkResponse);
 };
 
 export const removeMovie = (movieId) => {

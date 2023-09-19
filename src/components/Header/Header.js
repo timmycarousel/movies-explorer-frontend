@@ -5,8 +5,8 @@ import accountIconIn from "../../images/account-icon-in.svg";
 import { useLocation } from "react-router-dom";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
-function Header(loggedIn) {
-  // loggedIn = true;
+function Header({ loggedIn }) {
+  console.log(loggedIn);
   const url = useLocation();
   const isHomepage = url.pathname === "/";
   const headerClass =

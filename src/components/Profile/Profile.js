@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import validator from "validator"; // Импортируйте библиотеку для валидации
 
-export default function Profile(loggedIn) {
-  const navigate = useNavigate();
+export default function Profile({ onLogOut }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
@@ -39,11 +37,6 @@ export default function Profile(loggedIn) {
     // Сохраняем обновленные значения в localStorage
     localStorage.setItem("userName", newName);
     localStorage.setItem("userEmail", newEmail);
-  };
-
-  const handleSignOutClick = () => {
-    localStorage.clear();
-    navigate("/");
   };
 
   const validateName = (name) => {
@@ -95,7 +88,7 @@ export default function Profile(loggedIn) {
       <div className="profile__actions">
         <button
           className="profile__action-button"
-          onClick={handleSignOutClick}
+          onClick={onLogOut}
           type="button"
         >
           Выйти из аккаунта

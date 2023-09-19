@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AuthForm from "../AuthForm/AuthForm";
 
-function Login({ handleLogin }) {
+function Login({ handleLogin, errorMessage }) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -25,6 +25,7 @@ function Login({ handleLogin }) {
   return (
     <section>
       <AuthForm
+        errorMessage={errorMessage}
         isSignUp={false}
         handleSubmit={handleSubmit}
         handleInputChange={handleInputChange}
