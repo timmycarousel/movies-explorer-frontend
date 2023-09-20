@@ -4,36 +4,16 @@ import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import * as moviesApi from "../../utils/MoviesApi";
 
 export default function Movies() {
-  // Стейт переменные для хранения данных о фильмах и состояния загрузки
   const [moviesList, setMoviesList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isToggled, setIsToggled] = useState(false);
-
-  // Получаем значения из localStorage для управления состоянием
-  const localStorageIsToggled = localStorage.getItem("isToggled");
-  const localStorageMovies = JSON.parse(localStorage.getItem("filteredMovies"));
-
-  // Используем useEffect для обработки значений из localStorage при монтировании компонента
-  useEffect(() => {
-    if (localStorageIsToggled) {
-      setIsToggled(true);
-    } else {
-      setIsToggled(false);
-    }
-  }, [localStorageIsToggled]);
+  const [isToggled, setIsToggled] = useState(
+    localStorage.getItem("isToggled") === "true"
+  );
 
   useEffect(() => {
-    setIsLoading(true);
-    const localMovies = loadMoviesFromLocalStorage();
-    setFilteredMovies(localMovies);
-    setIsLoading(false);
-  }, []);
-
-  useEffect(() => {
-    // Загружаем фильмы с сервера и обновляем состояние при монтировании компонента
-    const fetchMovies = () => {
+    function fetchData() {
       setIsLoading(true);
       moviesApi
         .getMovies()
@@ -45,36 +25,29 @@ export default function Movies() {
           console.error("Ошибка при загрузке фильмов:", error);
           setIsLoading(false);
         });
-    };
-    fetchMovies();
+    }
+
+    fetchData();
   }, []);
 
   useEffect(() => {
-    // Обрабатываем данные из localStorage при монтировании компонента
-    handleLocalStorageData();
-  }, []);
+    const localMovies =
+      JSON.parse(localStorage.getItem("filteredMovies")) || [];
+    const localQuery = localStorage.getItem("query") || "";
+    setSearchQuery(localQuery);
+    setFilteredMovies(isToggled ? filterShortFilms(localMovies) : localMovies);
+  }, [isToggled]);
 
-  const loadMoviesFromLocalStorage = () => {
+  const loadLocalStorage = () => {
     const localMovies = JSON.parse(localStorage.getItem("filteredMovies"));
     return localMovies || [];
   };
 
-  function handleLocalStorageData() {
-    const localStorageMovies = JSON.parse(
-      localStorage.getItem("filteredMovies")
-    );
-    const localStorageQuery = localStorage.getItem("query");
+  const filterShortFilms = (movieList) => {
+    return movieList.filter((movie) => movie.duration < 35);
+  };
 
-    if (localStorageMovies === null) {
-      return;
-    }
-
-    setSearchQuery(localStorageQuery || "");
-    setFilteredMovies(localStorageMovies);
-  }
-
-  function handleMovieSearch() {
-    // Фильтруем фильмы на основе поискового запроса и устанавливаем результаты
+  const handleSearch = () => {
     const filtered = moviesList.filter((movie) => {
       const isMatching =
         movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -91,46 +64,35 @@ export default function Movies() {
     setFilteredMovies(filtered);
     localStorage.setItem("filteredMovies", JSON.stringify(filtered));
     localStorage.setItem("query", searchQuery);
-  }
-
-  function filterShortFilms() {
-    // Фильтруем короткометражные фильмы
-    return filteredMovies.filter((movie) => movie.duration < 35);
-  }
+  };
 
   const handleSearchChange = (evt) => {
-    // Обработчик изменения значения в поле поиска
     const value = evt.target.value;
     setSearchQuery(value);
   };
 
-  function handleToggleSwitch() {
-    // Обработчик переключения состояния короткометражных фильмов
-    if (isToggled === false) {
-      const shortMoviesList = filterShortFilms();
-      setIsToggled(true);
+  const handleToggle = () => {
+    if (!isToggled) {
+      const shortMoviesList = filterShortFilms(filteredMovies);
       setFilteredMovies(shortMoviesList);
-      localStorage.setItem("isToggled", true);
       localStorage.setItem("shortMovies", JSON.stringify(shortMoviesList));
     } else {
-      setIsToggled(false);
-      setFilteredMovies(localStorageMovies);
-      localStorage.removeItem("isToggled");
+      setFilteredMovies(loadLocalStorage());
       localStorage.removeItem("shortMovies");
     }
-  }
+    setIsToggled(!isToggled);
+    localStorage.setItem("isToggled", isToggled ? "false" : "true");
+  };
 
   return (
     <main className="movies">
-      {/* Компонент формы поиска */}
       <SearchForm
-        onSearchSubmit={handleMovieSearch}
+        onSearchSubmit={handleSearch}
         searchQuery={searchQuery}
         isToggled={isToggled}
-        onToggle={handleToggleSwitch}
+        onToggle={handleToggle}
         handleSearchChange={handleSearchChange}
       />
-      {/* Условное отображение результатов */}
       {filteredMovies.length > 0 ? (
         <MoviesCardList movies={filteredMovies} isLoading={isLoading} />
       ) : (
@@ -139,5 +101,3 @@ export default function Movies() {
     </main>
   );
 }
-
-// сделать пиксел перфект

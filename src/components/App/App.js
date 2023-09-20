@@ -63,10 +63,8 @@ function App() {
     if (name || email || password) {
       return MainApi.register(name, email, password)
         .then(() => {
-          // Обновляем данные пользователя после успешной регистрации
           handleChangeProfile(name, email);
 
-          // Затем вызываем авторизацию
           handleLogin(email, password);
         })
         .catch(handleError);
@@ -80,8 +78,9 @@ function App() {
     return MainApi.authorize(email, password)
       .then((data) => {
         localStorage.setItem("token", data.token);
+        setLoggedIn(true);
         navigate("/movies");
-        // Обновляем данные пользователя после успешной авторизации
+
         getUserData();
       })
       .catch(handleError);
@@ -92,6 +91,7 @@ function App() {
     MainApi.changeUserData(name, email)
       .then((data) => {
         setCurrentUser(data);
+        getUserData();
       })
       .catch(handleError);
   }
@@ -132,6 +132,7 @@ function App() {
                   loggedIn={loggedIn}
                   save={handleChangeProfile}
                   onLogOut={handleLogout}
+                  errorMessage={errorMessage}
                 />
               }
             />
