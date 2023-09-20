@@ -15,8 +15,6 @@ const AuthForm = ({
     password: "Обязательное поле",
   });
 
-  console.log(errorMessage);
-
   const [isValidForm, setIsValidForm] = useState(false);
 
   const handleInputChangeWithValidation = useCallback(

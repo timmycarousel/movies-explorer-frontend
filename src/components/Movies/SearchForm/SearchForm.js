@@ -19,7 +19,7 @@ export default function SearchForm({
     onSearchSubmit(); // Передаем searchQuery в родительский компонент
   };
 
-  console.log(validationError);
+  // console.log(validationError);
 
   return (
     <form className="search-form" onSubmit={handleSubmit} noValidate>

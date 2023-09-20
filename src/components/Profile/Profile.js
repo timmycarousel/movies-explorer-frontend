@@ -1,63 +1,50 @@
-import React, { useState, useEffect } from "react";
-import validator from "validator"; // Импортируйте библиотеку для валидации
+import React, { useContext, useState, useEffect } from "react";
+import validator from "validator";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-export default function Profile({ onLogOut }) {
+export default function Profile({ onLogOut, save }) {
+  const userInfo = useContext(CurrentUserContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [isFormValid, setIsFormValid] = useState(true);
 
   useEffect(() => {
-    // Получаем значения из localStorage и устанавливаем их в состояние
-    const storedName = localStorage.getItem("userName");
-    const storedEmail = localStorage.getItem("userEmail");
+    setName(userInfo.name || "");
+    setEmail(userInfo.email || "");
+  }, [userInfo]);
 
-    if (storedName && storedEmail) {
-      setName(storedName);
-      setEmail(storedEmail);
-    }
-  }, []);
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
 
-  const handleEditProfileClick = () => {
-    // Валидация полей "Имя" и "Email"
-    const newName = document.querySelector(
-      ".profile__info-value[name='name']"
-    ).value;
-    const newEmail = document.querySelector(
-      ".profile__info-value[name='email']"
-    ).value;
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
 
-    if (!validateName(newName) || !validateEmail(newEmail)) {
-      // Валидация не прошла, обработка ошибок (например, показ сообщений об ошибке)
+  const handleEditProfileClick = (e) => {
+    e.preventDefault();
+    if (!validateName(name) || !validateEmail(email)) {
+      setIsFormValid(false);
       return;
     }
 
-    // Переход к сохранению профиля, так как валидация пройдена
-    setName(newName);
-    setEmail(newEmail);
+    setIsFormValid(true);
 
-    // Сохраняем обновленные значения в localStorage
-    localStorage.setItem("userName", newName);
-    localStorage.setItem("userEmail", newEmail);
+    save({ name, email });
   };
 
   const validateName = (name) => {
-    // Ваша логика валидации для имени
     return /^[a-zA-Zа-яА-ЯёЁ\s-]+$/.test(name);
   };
 
   const validateEmail = (email) => {
-    // Используйте библиотеку validator для валидации email
     return validator.isEmail(email);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Предотвратить отправку формы
-    handleEditProfileClick(); // Вызвать функцию для обновления имени
   };
 
   return (
     <section className="profile">
       <h1 className="profile__title">Привет, {name}!</h1>
-      <form className="profile__info" onSubmit={handleSubmit}>
+      <form className="profile__info" onSubmit={handleEditProfileClick}>
         <div className="profile__info-row">
           <span className="profile__info-label">Имя</span>
           <input
@@ -68,6 +55,7 @@ export default function Profile({ onLogOut }) {
             defaultValue={name}
             minLength="4"
             maxLength="20"
+            onChange={handleNameChange}
           />
         </div>
         <div className="profile__info-row profile__info-row-email">
@@ -79,8 +67,12 @@ export default function Profile({ onLogOut }) {
             className="profile__info-value"
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             defaultValue={email}
+            onChange={handleEmailChange}
           />
         </div>
+        {!isFormValid && (
+          <p className="profile__error-message">Некорректные данные</p>
+        )}
         <button className="profile__info-button" type="submit">
           Редактировать
         </button>
