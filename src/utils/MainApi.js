@@ -83,20 +83,24 @@ export function getMovies() {
   return fetch(`${BASE_URL}/movies`, {
     method: "GET",
     headers: jsonHeaders,
+    credentials: "include",
   }).then(checkResponse);
 }
 
-export const saveMovie = (movie) => {
+export const saveMovie = ({ movie }) => {
+  // const token = localStorage.getItem("token");
+  console.log(movie);
   return fetch(`${BASE_URL}/movies`, {
     method: "POST",
     headers: jsonHeaders,
+    credentials: "include",
     body: JSON.stringify({
       country: movie.country,
       director: movie.director,
       duration: movie.duration,
       year: movie.year,
       description: movie.description,
-      image: { url: `${movieServer}${movie.image.url}` },
+      image: `${movieServer}${movie.image.url}`,
       trailerLink: movie.trailerLink,
       nameRU: movie.nameRU,
       nameEN: movie.nameEN,
@@ -104,6 +108,7 @@ export const saveMovie = (movie) => {
       movieId: movie.id,
     }),
   }).then(checkResponse);
+  // .then((savedMovie) => (movie._id = savedMovie._id));
 };
 
 export const removeMovie = (movieId) => {

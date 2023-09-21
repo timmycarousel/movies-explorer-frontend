@@ -24,7 +24,7 @@ function MovieCard({ movie }) {
         });
     } else {
       // Если не лайкнут, то сохраняем фильм
-      saveMovie(movie)
+      saveMovie({ movie })
         .then(() => {
           setLiked(true); // Обновляем состояние после успешного сохранения
         })
