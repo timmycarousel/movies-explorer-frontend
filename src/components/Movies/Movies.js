@@ -20,6 +20,7 @@ export default function Movies() {
         .then((data) => {
           setMoviesList(data);
           setIsLoading(false);
+          console.log("получаем фильмы с сервера большого", data);
         })
         .catch((error) => {
           console.error("Ошибка при загрузке фильмов:", error);

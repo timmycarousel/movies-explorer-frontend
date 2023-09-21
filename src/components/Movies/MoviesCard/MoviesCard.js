@@ -12,6 +12,12 @@ function MovieCard({ movie }) {
   const hours = Math.floor(movie.duration / 60);
   const minutes = movie.duration % 60;
 
+  const isOnMoviesPage = window.location.pathname === "/movies"; // Проверка текущего URL-пути
+
+  const imageSrc = isOnMoviesPage
+    ? `${movieServer}${movie.image.url}`
+    : movie.image.url;
+
   const toggleLike = () => {
     if (liked) {
       // Если уже лайкнут, то удаляем фильм
@@ -42,7 +48,7 @@ function MovieCard({ movie }) {
           target="_blank"
           onClick={() => openPopup(movie.trailerLink)}
         >
-          <img src={`${movieServer}${movie.image.url}`} alt={movie.nameRU} />
+          <img src={imageSrc} alt={movie.nameRU} />
         </a>
       </div>
       <div className="movie-card__info">
