@@ -132,5 +132,13 @@ export const removeMovie = (movieId) => {
       ...jsonHeaders,
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
-  }).then(checkResponse);
+    credentials: "include",
+  }).then((res) => {
+    if (res.ok) {
+      return {};
+    }
+    return res.json().then((data) => {
+      return Promise.reject(`Ошибка: ${data.message}`);
+    });
+  });
 };

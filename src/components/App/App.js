@@ -8,9 +8,11 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 import Footer from "../Footer/Footer";
 import * as MainApi from "../../utils/MainApi.js";
+import * as moviesApi from "../../utils/MoviesApi.js";
 import Movies from "../Movies/Movies";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import { CurrentUserContext } from "../../components/contexts/CurrentUserContext";
+import { MoviesUserContext } from "../contexts/MoviesUserContext";
 
 function App() {
   const location = useLocation();
@@ -20,6 +22,9 @@ function App() {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
+  const [userMovies, setUserMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [moviesList, setMoviesList] = useState([]);
 
   const showHeader = showHeaderPaths.includes(location.pathname);
   const showFooter = showFooterPaths.includes(location.pathname);
@@ -101,47 +106,87 @@ function App() {
     localStorage.clear();
     navigate("/");
   }
+  function getMovies() {
+    moviesApi
+      .getMovies()
+      .then((data) => {
+        setMoviesList(data);
+        setIsLoading(false);
+        console.log("получаем фильмы с сервера большого", data);
+      })
+      .catch((error) => {
+        console.error("Ошибка при загрузке фильмов:", error);
+        setIsLoading(false);
+      });
+  }
+
+  function getUserMovies() {
+    MainApi.getMovies()
+      .then((data) => {
+        setUserMovies(data);
+        console.log("ПОЛУЧАЕМ ФИЛЬМЫ", data);
+      })
+      .catch(handleError);
+  }
 
   return (
     <div className="app">
-      <CurrentUserContext.Provider value={currentUser}>
-        {showHeader && <Header loggedIn={loggedIn} />}
-        <main className="content">
-          <Routes>
-            <Route
-              path="/signup"
-              element={
-                <Register
-                  handleRegister={handleRegister}
-                  errorMessage={errorMessage}
-                />
-              }
-            />
-            <Route
-              path="/signin"
-              element={
-                <Login handleLogin={handleLogin} errorMessage={errorMessage} />
-              }
-            />
-            <Route path="/movies" element={<Movies />} />
-            <Route path="/saved-movies" element={<SavedMovies />} />
-            <Route
-              path="/profile"
-              element={
-                <Profile
-                  loggedIn={loggedIn}
-                  save={handleChangeProfile}
-                  onLogOut={handleLogout}
-                  errorMessage={errorMessage}
-                />
-              }
-            />
-            <Route path="*" element={<NotFoundPage />} />
-            <Route path="/" element={<Main />} />
-          </Routes>
-        </main>
-        {showFooter && <Footer />}
-      </CurrentUserContext.Provider>
+      <MoviesUserContext.Provider value={{ userMovies, setUserMovies }}>
+        <CurrentUserContext.Provider value={currentUser}>
+          {showHeader && <Header loggedIn={loggedIn} />}
+          <main className="content">
+            <Routes>
+              <Route
+                path="/signup"
+                element={
+                  <Register
+                    handleRegister={handleRegister}
+                    errorMessage={errorMessage}
+                  />
+                }
+              />
+              <Route
+                path="/signin"
+                element={
+                  <Login
+                    handleLogin={handleLogin}
+                    errorMessage={errorMessage}
+                  />
+                }
+              />
+              <Route
+                path="/movies"
+                element={
+                  <Movies
+                    getMovies={getMovies}
+                    moviesList={moviesList}
+                    isLoading={isLoading}
+                    getUserMovies={getUserMovies}
+                  />
+                }
+              />
+              <Route
+                path="/saved-movies"
+                element={<SavedMovies getMovies={getUserMovies} />}
+              />
+              <Route
+                path="/profile"
+                element={
+                  <Profile
+                    loggedIn={loggedIn}
+                    save={handleChangeProfile}
+                    onLogOut={handleLogout}
+                    errorMessage={errorMessage}
+                  />
+                }
+              />
+              <Route path="*" element={<NotFoundPage />} />
+              <Route path="/" element={<Main />} />
+            </Routes>
+          </main>
+          {showFooter && <Footer />}
+        </CurrentUserContext.Provider>
+      </MoviesUserContext.Provider>
     </div>
   );
 }

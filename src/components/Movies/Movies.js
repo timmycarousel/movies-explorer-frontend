@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import SearchForm from "./SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
-import * as moviesApi from "../../utils/MoviesApi";
 
-export default function Movies() {
-  const [moviesList, setMoviesList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+export default function Movies({
+  getMovies,
+  isLoading,
+  moviesList,
+  getUserMovies,
+}) {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [isToggled, setIsToggled] = useState(
@@ -13,22 +15,13 @@ export default function Movies() {
   );
 
   useEffect(() => {
-    function fetchData() {
-      setIsLoading(true);
-      moviesApi
-        .getMovies()
-        .then((data) => {
-          setMoviesList(data);
-          setIsLoading(false);
-          console.log("получаем фильмы с сервера большого", data);
-        })
-        .catch((error) => {
-          console.error("Ошибка при загрузке фильмов:", error);
-          setIsLoading(false);
-        });
+    if (moviesList.length === 0) {
+      getMovies();
     }
+  }, []);
 
-    fetchData();
+  useEffect(() => {
+    getUserMovies();
   }, []);
 
   useEffect(() => {

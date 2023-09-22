@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { movieServer } from "../../../utils/constants";
 import { saveMovie, removeMovie } from "../../../utils/MainApi"; // Подключите ваши функции для сохранения и удаления фильма
+import { MoviesUserContext } from "../../contexts/MoviesUserContext";
 
 function MovieCard({ movie }) {
+  const [liked, setLiked] = useState(false);
+
+  const { userMovies, setUserMovies } = useContext(MoviesUserContext);
+
   const openPopup = (url) => {
     window.open(url, "MovieTrailer", "width=800,height=600");
   };
-
-  const [liked, setLiked] = useState(false);
 
   const hours = Math.floor(movie.duration / 60);
   const minutes = movie.duration % 60;
@@ -18,25 +21,42 @@ function MovieCard({ movie }) {
     ? `${movieServer}${movie.image.url}`
     : movie.image.url;
 
+  useEffect(() => {
+    setLiked(userMovies.some((userMovie) => userMovie.nameRU === movie.nameRU));
+  }, [userMovies, movie.nameRU]);
+
+  console.log("ЮЗЕР МУВИС", userMovies);
+
+  const handleSaveMovie = () => {
+    saveMovie({ movie })
+      .then(() => {
+        setLiked(true); // Обновляем состояние после успешного сохранения
+        setUserMovies([...userMovies, movie]);
+      })
+      .catch((error) => {
+        console.error("Ошибка при сохранении фильма:", error);
+      });
+  };
+
+  const handleRemoveMovie = () => {
+    console.log("handleRemoveMovie called");
+    removeMovie(movie._id)
+      .then(() => {
+        setUserMovies(
+          userMovies.filter((userMovie) => userMovie._id !== movie._id)
+        );
+      })
+      .catch((error) => {
+        console.error("Ошибка при удалении фильма:", error);
+      });
+  };
+
   const toggleLike = () => {
+    console.log("Лайкнута?", liked);
     if (liked) {
-      // Если уже лайкнут, то удаляем фильм
-      removeMovie(movie._id) // Используйте соответствующий идентификатор фильма
-        .then(() => {
-          setLiked(false); // Обновляем состояние после успешного удаления
-        })
-        .catch((error) => {
-          console.error("Ошибка при удалении фильма:", error);
-        });
+      handleRemoveMovie();
     } else {
-      // Если не лайкнут, то сохраняем фильм
-      saveMovie({ movie })
-        .then(() => {
-          setLiked(true); // Обновляем состояние после успешного сохранения
-        })
-        .catch((error) => {
-          console.error("Ошибка при сохранении фильма:", error);
-        });
+      handleSaveMovie();
     }
   };
 
