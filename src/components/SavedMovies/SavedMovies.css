@@ -1,3 +1,9 @@
+.saved-movies {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .saved-movies .movie-card__like-button {
   background-image: url("../../images/d4.svg");
   opacity: 0;
