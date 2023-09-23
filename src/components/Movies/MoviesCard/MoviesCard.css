@@ -112,6 +112,11 @@
     max-height: 237px;
   }
 
+  .movie-card-img {
+    max-width: 300px;
+    height: 168px;
+  }
+
   .movie-card__title {
     font-size: 12px;
     padding-bottom: 3px;
@@ -120,6 +125,7 @@
   .movie-card__info {
     margin-left: 14px;
     max-width: 98%;
+    margin-top: 7px;
   }
 
   .movie-card__like-button {

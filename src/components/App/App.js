@@ -13,6 +13,7 @@ import Movies from "../Movies/Movies";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import { CurrentUserContext } from "../../components/contexts/CurrentUserContext";
 import { MoviesUserContext } from "../contexts/MoviesUserContext";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   const location = useLocation();
@@ -157,22 +158,31 @@ function App() {
               <Route
                 path="/movies"
                 element={
-                  <Movies
+                  <ProtectedRoute
+                    element={Movies}
                     getMovies={getMovies}
                     moviesList={moviesList}
                     isLoading={isLoading}
+                    loggedIn={loggedIn}
                     getUserMovies={getUserMovies}
                   />
                 }
               />
               <Route
                 path="/saved-movies"
-                element={<SavedMovies getMovies={getUserMovies} />}
+                element={
+                  <ProtectedRoute
+                    element={SavedMovies}
+                    loggedIn={loggedIn}
+                    getMovies={getUserMovies}
+                  />
+                }
               />
               <Route
                 path="/profile"
                 element={
-                  <Profile
+                  <ProtectedRoute
+                    element={Profile}
                     loggedIn={loggedIn}
                     save={handleChangeProfile}
                     onLogOut={handleLogout}

@@ -6,14 +6,27 @@ export default function Profile({ onLogOut, save, errorMessage }) {
   const userInfo = useContext(CurrentUserContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const isDataChanged = name !== userInfo.name || email !== userInfo.email;
   const [isFormValid, setIsFormValid] = useState(true);
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [isProfileSaved, setIsProfileSaved] = useState(false);
+  const [profileSavedMessage, setProfileSavedMessage] = useState("");
 
   useEffect(() => {
     setName(userInfo.name || "");
     setEmail(userInfo.email || "");
   }, [userInfo]);
+
+  useEffect(() => {
+    if (isProfileSaved) {
+      const timer = setTimeout(() => {
+        setIsProfileSaved(false);
+        setProfileSavedMessage("");
+      }, 5000); // Скрываем сообщение через 5 секунд (по вашему усмотрению)
+      return () => clearTimeout(timer);
+    }
+  }, [isProfileSaved]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -41,6 +54,8 @@ export default function Profile({ onLogOut, save, errorMessage }) {
     setIsFormValid(true);
 
     save({ name, email });
+    setIsProfileSaved(true);
+    setProfileSavedMessage("Профиль успешно сохранен");
   };
 
   const validateName = (name) => {
@@ -98,13 +113,18 @@ export default function Profile({ onLogOut, save, errorMessage }) {
         {emailError && <div className="profile__error">{emailError}</div>}
 
         {errorMessage && <div className="profile__error">{errorMessage}</div>}
+        {isProfileSaved && (
+          <div className="profile__success-message">{profileSavedMessage}</div>
+        )}
 
         <button
           className={`profile__info-button ${
-            !isFormValid ? "profile__info-button_disabled" : ""
+            !isFormValid || !isDataChanged
+              ? "profile__info-button_disabled"
+              : ""
           }`}
           type="submit"
-          disabled={!isFormValid}
+          disabled={!isFormValid || !isDataChanged}
         >
           Редактировать
         </button>
