@@ -20,18 +20,26 @@ export default function SavedMovies({ getMovies }) {
   }, [userMovies]);
 
   useEffect(() => {
-    // Восстановление значения isToggledMovies из localStorage
     const isToggledFromStorage =
       localStorage.getItem("isToggledMovies") === "true";
+
     setIsToggledMovies(isToggledFromStorage);
-  }, []); // Пустой массив зависимостей, чтобы эффект выполнился только один раз при загрузке компонента
+
+    const savedSearchQuery = localStorage.getItem("searchQuery") || "";
+
+    setSearchQuery(savedSearchQuery);
+
+    const savedFilteredMovies =
+      JSON.parse(localStorage.getItem("filteredMovies")) || [];
+
+    setFilteredMovies(savedFilteredMovies);
+  }, []);
+  useEffect(() => {
+    handleSearchMovies();
+  }, [searchQuery, isToggledMovies]);
 
   function handleSearchMovies() {
     const filtered = filterMovies(userMovies, isToggledMovies, searchQuery);
-
-    if (filtered.length === 0) {
-      setIsMoviesNotFound(true);
-    }
 
     setFilteredMovies(filtered);
   }
@@ -54,13 +62,14 @@ export default function SavedMovies({ getMovies }) {
       filtered = filtered.filter((movie) => movie.duration < 35);
     }
 
-    setFilteredMovies(filtered);
+    return filtered;
   };
 
   // Обработчик изменения значения в поисковой строке
   const handleSearchChange = (evt) => {
     const value = evt.target.value;
     setSearchQuery(value);
+    localStorage.setItem("searchQuery", value);
   };
 
   // Обработчик фильтрации
@@ -78,10 +87,11 @@ export default function SavedMovies({ getMovies }) {
       <SearchForm
         onSearchSubmit={handleSearchMovies}
         searchQuery={searchQuery}
-        handleSearchChange={handleSearchChange}
         isToggled={isToggledMovies}
         onToggle={handleFilterToggle}
+        handleSearchChange={handleSearchChange}
       />
+
       {filteredMovies.length > 0 ? (
         <MoviesCardList movies={filteredMovies} />
       ) : (

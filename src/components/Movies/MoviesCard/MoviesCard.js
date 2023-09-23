@@ -1,22 +1,19 @@
 import React, { useState, useContext, useEffect } from "react";
 import { movieServer } from "../../../utils/constants";
-import { saveMovie, removeMovie } from "../../../utils/MainApi"; // Подключите ваши функции для сохранения и удаления фильма
+import { saveMovie, removeMovie } from "../../../utils/MainApi";
 import { MoviesUserContext } from "../../contexts/MoviesUserContext";
 
 function MovieCard({ movie }) {
   const [liked, setLiked] = useState(false);
-
   const { userMovies, setUserMovies } = useContext(MoviesUserContext);
 
   const openPopup = (url) => {
     window.open(url, "MovieTrailer", "width=800,height=600");
   };
 
+  const isOnMoviesPage = window.location.pathname === "/movies";
   const hours = Math.floor(movie.duration / 60);
   const minutes = movie.duration % 60;
-
-  const isOnMoviesPage = window.location.pathname === "/movies"; // Проверка текущего URL-пути
-
   const imageSrc = isOnMoviesPage
     ? `${movieServer}${movie.image.url}`
     : movie.image.url;
@@ -25,12 +22,9 @@ function MovieCard({ movie }) {
     setLiked(userMovies.some((userMovie) => userMovie.nameRU === movie.nameRU));
   }, [userMovies, movie.nameRU]);
 
-  console.log("ЮЗЕР МУВИС", userMovies);
-
   const handleSaveMovie = () => {
     saveMovie({ movie })
       .then(() => {
-        setLiked(true); // Обновляем состояние после успешного сохранения
         setUserMovies([...userMovies, movie]);
       })
       .catch((error) => {
@@ -38,9 +32,8 @@ function MovieCard({ movie }) {
       });
   };
 
-  const handleRemoveMovie = () => {
-    console.log("handleRemoveMovie called");
-    removeMovie(movie._id)
+  const handleRemoveMovie = (movieRemove) => {
+    removeMovie(movieRemove._id)
       .then(() => {
         setUserMovies(
           userMovies.filter((userMovie) => userMovie._id !== movie._id)
@@ -52,11 +45,14 @@ function MovieCard({ movie }) {
   };
 
   const toggleLike = () => {
-    console.log("Лайкнута?", liked);
-    if (liked) {
-      handleRemoveMovie();
-    } else {
+    const savedMovie = userMovies.find(
+      (userMovie) => userMovie.nameRU === movie.nameRU
+    );
+
+    if (!savedMovie) {
       handleSaveMovie();
+    } else {
+      handleRemoveMovie(savedMovie);
     }
   };
 
