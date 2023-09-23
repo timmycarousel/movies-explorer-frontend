@@ -1,7 +1,7 @@
 import { movieServer } from "./constants";
 
 const BASE_URL = "https://api.moviesexplorer.nomoredomainsicu.ru";
-// const BASE_URL = "https://localhost:3001";
+
 const jsonHeaders = {
   "Content-Type": "application/json",
   Accept: "application/json",
