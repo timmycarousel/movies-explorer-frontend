@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.nomoreparties.co/beatfilm-movies";6
+const BASE_URL = "https://api.nomoreparties.co/beatfilm-movies";
 
 export function getMovies() {
   return fetch(`${BASE_URL}`, {

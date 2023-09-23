@@ -1,7 +1,7 @@
 import { movieServer } from "./constants";
 
-const BASE_URL = "http://api.moviesexplorer.nomoredomainsicu.ru";
-// const BASE_URL = "http://localhost:3001";
+const BASE_URL = "https://api.moviesexplorer.nomoredomainsicu.ru";
+// const BASE_URL = "https://localhost:3001";
 const jsonHeaders = {
   "Content-Type": "application/json",
   Accept: "application/json",
@@ -88,8 +88,6 @@ export function getMovies() {
 }
 
 export const saveMovie = ({ movie }) => {
-  // const token = localStorage.getItem("token");
-  // console.log({ movie });
   return fetch(`${BASE_URL}/movies`, {
     method: "POST",
     headers: jsonHeaders,
@@ -101,24 +99,12 @@ export const saveMovie = ({ movie }) => {
       year: movie.year,
       description: movie.description,
       image: { url: `${movieServer}${movie.image.url}` },
-      // image: { url: `${movie.image.url}` },
-      // image: `${movieServer}${movie.image.url}`,
+
       trailerLink: movie.trailerLink,
       nameRU: movie.nameRU,
       nameEN: movie.nameEN,
       thumbnail: `${movieServer}${movie.image.url}`,
       movieId: movie.id,
-      // country: "Russia1",
-      // director: "Tim Vor1",
-      // duration: "1235",
-      // year: "2006",
-      // description: "fbcvbcvb",
-      // image: "https://hello.gmail.com",
-      // trailerLink: "https://hello.gmail.com",
-      // nameRU: "YYertertY",
-      // nameEN: "YYcvnn",
-      // thumbnail: "https://hello.gmail.com",
-      // movieId: "13"
     }),
   })
     .then(checkResponse)
