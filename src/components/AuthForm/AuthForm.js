@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import logo from "../../images/logo.svg";
-import validator from "validator";
+import { matches, isEmail } from "validator";
 
 const AuthForm = ({
   isSignUp,
@@ -26,10 +26,16 @@ const AuthForm = ({
       let isValid = e.target.checkValidity();
 
       if (name === "email") {
-        isValid = validator.isEmail(value);
+        isValid = isEmail(value);
         updateValidationMessage(
           name,
           isValid ? "" : "Введите корректный адрес электронной почты"
+        );
+      } else if (name === "name") {
+        isValid = matches(value, /^[a-zA-Z\s]+$/); // Регулярное выражение для имени (только буквы и пробелы)
+        updateValidationMessage(
+          name,
+          isValid ? "" : "Введите корректное имя (только буквы и пробелы)"
         );
       } else {
         updateValidationMessage(
