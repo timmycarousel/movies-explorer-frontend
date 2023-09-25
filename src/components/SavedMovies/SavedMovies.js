@@ -7,9 +7,7 @@ export default function SavedMovies({ getMovies }) {
   const { userMovies } = useContext(MoviesUserContext);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isToggledMovies, setIsToggledMovies] = useState(
-    localStorage.getItem("isToggledMovies") === "true"
-  );
+  const [isToggledMovies, setIsToggledMovies] = useState(false);
 
   useEffect(() => {
     getMovies();
@@ -20,21 +18,6 @@ export default function SavedMovies({ getMovies }) {
   }, [userMovies]);
 
   useEffect(() => {
-    const isToggledFromStorage =
-      localStorage.getItem("isToggledMovies") === "true";
-
-    setIsToggledMovies(isToggledFromStorage);
-
-    const savedSearchQuery = localStorage.getItem("searchQuery") || "";
-
-    setSearchQuery(savedSearchQuery);
-
-    const savedFilteredMovies =
-      JSON.parse(localStorage.getItem("filteredMovies")) || [];
-
-    setFilteredMovies(savedFilteredMovies);
-  }, []);
-  useEffect(() => {
     handleSearchMovies();
   }, [searchQuery, isToggledMovies]);
 
@@ -43,7 +26,7 @@ export default function SavedMovies({ getMovies }) {
 
     setFilteredMovies(filtered);
   }
-  // Функция для фильтрации фильмов
+
   const filterMovies = () => {
     let filtered = userMovies;
 
@@ -52,9 +35,7 @@ export default function SavedMovies({ getMovies }) {
       filtered = filtered.filter(
         (movie) =>
           movie.nameRU.toLowerCase().includes(query.toLowerCase()) ||
-          movie.nameEN.toLowerCase().includes(query.toLowerCase()) ||
-          movie.director.toLowerCase().includes(query.toLowerCase()) ||
-          movie.description.toLowerCase().includes(query.toLowerCase())
+          movie.nameEN.toLowerCase().includes(query.toLowerCase())
       );
     }
 
@@ -65,21 +46,14 @@ export default function SavedMovies({ getMovies }) {
     return filtered;
   };
 
-  // Обработчик изменения значения в поисковой строке
   const handleSearchChange = (evt) => {
     const value = evt.target.value;
     setSearchQuery(value);
-    localStorage.setItem("searchQuery", value);
   };
 
-  // Обработчик фильтрации
   const handleFilterToggle = () => {
     const newIsToggledMovies = !isToggledMovies;
     setIsToggledMovies(newIsToggledMovies);
-    localStorage.setItem("isToggledMovies", newIsToggledMovies.toString());
-
-    // Вызываем фильтрацию при изменении фильтра
-    filterMovies();
   };
 
   return (

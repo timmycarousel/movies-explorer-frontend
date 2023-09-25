@@ -11,7 +11,7 @@ export default function SearchForm({
   const [validationError, setValidationError] = useState("");
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    if (searchQuery.slice(1, -1) === "" || searchQuery.trim() === "") {
+    if (searchQuery.trim() === "") {
       setValidationError("Нужно ввести ключевое слово");
       return;
     }

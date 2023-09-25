@@ -13,6 +13,7 @@ export default function Movies({
   const [isToggled, setIsToggled] = useState(
     localStorage.getItem("isToggled") === "true"
   );
+  const [hasSearched, setHasSearched] = useState(false);
 
   useEffect(() => {
     if (moviesList.length === 0) {
@@ -45,9 +46,7 @@ export default function Movies({
     const filtered = moviesList.filter((movie) => {
       const isMatching =
         movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        movie.nameEN.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        movie.director.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        movie.description.toLowerCase().includes(searchQuery.toLowerCase());
+        movie.nameEN.toLowerCase().includes(searchQuery.toLowerCase());
       if (isToggled) {
         return isMatching && movie.duration < 35;
       } else {
@@ -58,6 +57,8 @@ export default function Movies({
     setFilteredMovies(filtered);
     localStorage.setItem("filteredMovies", JSON.stringify(filtered));
     localStorage.setItem("query", searchQuery);
+
+    setHasSearched(true);
   };
 
   const handleSearchChange = (evt) => {
@@ -87,10 +88,10 @@ export default function Movies({
         onToggle={handleToggle}
         handleSearchChange={handleSearchChange}
       />
-      {filteredMovies.length > 0 ? (
-        <MoviesCardList movies={filteredMovies} isLoading={isLoading} />
-      ) : (
+      {hasSearched && filteredMovies.length === 0 ? (
         <p className="movies__no-films">Ничего не найдено</p>
+      ) : (
+        <MoviesCardList movies={filteredMovies} isLoading={isLoading} />
       )}
     </main>
   );

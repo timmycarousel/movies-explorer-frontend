@@ -11,11 +11,12 @@ const AuthForm = ({
   errorMessage,
 }) => {
   const [validationMessages, setValidationMessages] = useState({
-    email: "Обязательное поле",
-    password: "Обязательное поле",
+    email: "",
+    password: "",
   });
 
   const [isValidForm, setIsValidForm] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleInputChangeWithValidation = useCallback(
     (e) => {
@@ -56,9 +57,15 @@ const AuthForm = ({
 
   const h1Text = isSignUp ? "Добро пожаловать!" : "Рады видеть!";
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setFormSubmitted(true);
+    handleSubmit(e);
+  };
+
   return (
     <section className="auth-page">
-      <form onSubmit={handleSubmit} className="auth-page__form" noValidate>
+      <form onSubmit={handleFormSubmit} className="auth-page__form" noValidate>
         <a href="/" className="auth-page__logo">
           <img src={logo} alt="логотип" />
         </a>
@@ -125,7 +132,7 @@ const AuthForm = ({
             </span>
           </div>
         </div>
-        {errorMessage && (
+        {formSubmitted && errorMessage && (
           <div className="auth-page__error-message">{errorMessage}</div>
         )}
         <button

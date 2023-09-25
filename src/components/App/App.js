@@ -108,16 +108,18 @@ function App() {
     navigate("/");
   }
   function getMovies() {
-    moviesApi
+    return moviesApi
       .getMovies()
       .then((data) => {
         setMoviesList(data);
         setIsLoading(false);
         console.log("получаем фильмы с сервера большого", data);
+        return data;
       })
       .catch((error) => {
         console.error("Ошибка при загрузке фильмов:", error);
         setIsLoading(false);
+        return Promise.reject(error);
       });
   }
 
