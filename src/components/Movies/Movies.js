@@ -25,6 +25,11 @@ export default function Movies({
     getUserMovies();
   }, []);
 
+  // useEffect(() => {
+  //   // Вызываем handleSearch при изменении isToggled
+  //   handleSearch();
+  // }, [isToggled]);
+
   useEffect(() => {
     const localMovies =
       JSON.parse(localStorage.getItem("filteredMovies")) || [];
@@ -76,6 +81,7 @@ export default function Movies({
       localStorage.removeItem("shortMovies");
     }
     setIsToggled(!isToggled);
+
     localStorage.setItem("isToggled", isToggled ? "false" : "true");
   };
 

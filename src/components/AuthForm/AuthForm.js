@@ -32,7 +32,7 @@ const AuthForm = ({
           isValid ? "" : "Введите корректный адрес электронной почты"
         );
       } else if (name === "name") {
-        isValid = matches(value, /^[a-zA-Z\s]+$/); // Регулярное выражение для имени (только буквы и пробелы)
+        isValid = matches(value, /^[a-zA-Zа-яА-Я\s]+$/); // Регулярное выражение для имени (только буквы и пробелы)
         updateValidationMessage(
           name,
           isValid ? "" : "Введите корректное имя (только буквы и пробелы)"

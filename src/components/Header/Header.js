@@ -22,7 +22,7 @@ function Header({ loggedIn }) {
           <a className="header__link" href="/">
             <img src={logo} alt="Логотип" className="header__logo" />
           </a>
-          {loggedIn && headerClass && (
+          {loggedIn && (
             <>
               <a className="header__btn header__btn_movies" href="/movies">
                 Фильмы
