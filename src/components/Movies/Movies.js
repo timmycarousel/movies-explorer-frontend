@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import SearchForm from "./SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
+import * as moviesApi from "../../utils/MoviesApi.js";
 
-export default function Movies({
-  getMovies,
-  isLoading,
-  moviesList,
-  getUserMovies,
-}) {
+export default function Movies({ getUserMovies }) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [moviesList, setMoviesList] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [isToggled, setIsToggled] = useState(
@@ -16,19 +14,29 @@ export default function Movies({
   const [hasSearched, setHasSearched] = useState(false);
 
   useEffect(() => {
+    getUserMovies();
+  }, []);
+
+  function getMovies() {
+    return moviesApi
+      .getMovies()
+      .then((data) => {
+        setMoviesList(data);
+        setIsLoading(false);
+        console.log("получаем фильмы с сервера большого", data);
+        return data;
+      })
+      .catch((error) => {
+        console.error("Ошибка при загрузке фильмов:", error);
+        setIsLoading(false);
+        return Promise.reject(error);
+      });
+  }
+  useEffect(() => {
     if (moviesList.length === 0) {
       getMovies();
     }
   }, []);
-
-  useEffect(() => {
-    getUserMovies();
-  }, []);
-
-  // useEffect(() => {
-  //   // Вызываем handleSearch при изменении isToggled
-  //   handleSearch();
-  // }, [isToggled]);
 
   useEffect(() => {
     const localMovies =
