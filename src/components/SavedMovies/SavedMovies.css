@@ -27,10 +27,7 @@
   .saved-movies .movies-card-list__container {
     margin-bottom: 95px;
   }
-  /* .saved-movies .movie-card.liked .movies-card-list {
-    margin-bottom: 200px;
-  } */
-  .saved-movies .movie-card.unliked .movie-card__like-button {
+  .saved-movies .movie-card .movie-card__like-button {
     background-image: url("../../images/d4.svg");
     opacity: 1;
   }

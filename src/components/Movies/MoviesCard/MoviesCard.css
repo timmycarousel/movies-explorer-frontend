@@ -58,7 +58,6 @@
   text-overflow: ellipsis;
 }
 
-/* Удалите стили для .movie-card__like-button и используйте фоновые изображения */
 .movie-card__like-button {
   width: 26px;
   height: 30px;
