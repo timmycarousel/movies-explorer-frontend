@@ -13,7 +13,12 @@ export default function Movies({ getUserMovies }) {
   const [isToggled, setIsToggled] = useState(
     localStorage.getItem("isToggled") === "true"
   );
-  const [hasSearched, setHasSearched] = useState(false);
+  const [hasSearched, setHasSearched] = useState(
+    localStorage.getItem("hasSearched") === "true"
+  );
+  const [searchQueryAfterSubmit, setSearchQueryAfterSubmit] = useState(
+    localStorage.getItem("searchQueryAfterSubmit") || ""
+  );
 
   useEffect(() => {
     getUserMovies();
@@ -25,22 +30,27 @@ export default function Movies({ getUserMovies }) {
   }, []);
 
   useEffect(() => {
-    // Фильтруем фильмы с учетом поисковой строки и состояния чекбокса
-    const filtered = moviesList.filter((movie) => {
-      const isMatching =
-        movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        movie.nameEN.toLowerCase().includes(searchQuery.toLowerCase());
-      if (isToggled) {
-        return isMatching && movie.duration < 35;
-      } else {
-        return isMatching;
-      }
-    });
+    if (hasSearched) {
+      const filtered = moviesList.filter((movie) => {
+        const isMatching =
+          movie.nameRU
+            .toLowerCase()
+            .includes(searchQueryAfterSubmit.toLowerCase()) ||
+          movie.nameEN
+            .toLowerCase()
+            .includes(searchQueryAfterSubmit.toLowerCase());
+        if (isToggled) {
+          return isMatching && movie.duration < 35;
+        } else {
+          return isMatching;
+        }
+      });
 
-    setFilteredMovies(filtered);
+      setFilteredMovies(filtered);
 
-    localStorage.setItem("filteredMovies", JSON.stringify(filtered));
-  }, [searchQuery, isToggled, moviesList]);
+      localStorage.setItem("filteredMovies", JSON.stringify(filtered));
+    }
+  }, [searchQueryAfterSubmit, isToggled, moviesList, hasSearched]);
 
   const handleSearch = () => {
     if (!hasSearched && moviesList.length === 0) {
@@ -61,9 +71,12 @@ export default function Movies({ getUserMovies }) {
         });
     }
 
-    setHasSearched(true);
     localStorage.setItem("searchQuery", searchQuery);
     localStorage.setItem("isToggled", isToggled ? "true" : "false");
+    localStorage.setItem("hasSearched", "true");
+    localStorage.setItem("searchQueryAfterSubmit", searchQuery);
+    setHasSearched(true);
+    setSearchQueryAfterSubmit(searchQuery);
   };
 
   const handleSearchChange = (evt) => {
@@ -88,7 +101,11 @@ export default function Movies({ getUserMovies }) {
       {!isLoading && hasSearched && filteredMovies.length === 0 ? (
         <p className="movies__no-films">Ничего не найдено</p>
       ) : (
-        <MoviesCardList movies={filteredMovies} isLoading={isLoading} />
+        <MoviesCardList
+          movies={filteredMovies}
+          isLoading={isLoading}
+          isMoviesPage={true}
+        />
       )}
     </main>
   );

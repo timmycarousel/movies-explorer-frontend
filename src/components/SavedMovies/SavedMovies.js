@@ -8,6 +8,7 @@ export default function SavedMovies({ getMovies }) {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [isToggledMovies, setIsToggledMovies] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false);
 
   useEffect(() => {
     getMovies();
@@ -18,8 +19,10 @@ export default function SavedMovies({ getMovies }) {
   }, [userMovies]);
 
   useEffect(() => {
-    handleSearchMovies();
-  }, [searchQuery, isToggledMovies]);
+    if (hasSearched) {
+      handleSearchMovies();
+    }
+  }, [searchQuery, isToggledMovies, hasSearched]);
 
   function handleSearchMovies() {
     const filtered = filterMovies(userMovies, isToggledMovies, searchQuery);
@@ -56,20 +59,25 @@ export default function SavedMovies({ getMovies }) {
     setIsToggledMovies(newIsToggledMovies);
   };
 
+  const handleSearchSubmit = () => {
+    setHasSearched(true);
+    handleSearchMovies();
+  };
+
   return (
     <div className="saved-movies">
       <SearchForm
-        onSearchSubmit={handleSearchMovies}
+        onSearchSubmit={handleSearchSubmit}
         searchQuery={searchQuery}
         isToggled={isToggledMovies}
         onToggle={handleFilterToggle}
         handleSearchChange={handleSearchChange}
       />
 
-      {filteredMovies.length > 0 ? (
-        <MoviesCardList movies={filteredMovies} />
-      ) : (
+      {hasSearched && filteredMovies.length === 0 ? (
         <p className="movies__no-films">Ничего не найдено</p>
+      ) : (
+        <MoviesCardList movies={filteredMovies} isMoviesPage={false} />
       )}
     </div>
   );
