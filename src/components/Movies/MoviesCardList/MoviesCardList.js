@@ -6,8 +6,15 @@ export default function MoviesCardList({ isLoading, movies }) {
   // Состояние для отслеживания количества видимых карточек
   const [visibleMovies, setVisibleMovies] = useState(
     // Инициализация количества видимых карточек в зависимости от ширины экрана
-    window.innerWidth <= 400 ? 5 : window.innerWidth <= 895 ? 8 : 12
+    window.innerWidth <= 400 ? 5 : window.innerWidth <= 767 ? 8 : 12
   );
+
+  useEffect(() => {
+    // Сбрасываем количество видимых карточек при изменении movies
+    setVisibleMovies(
+      window.innerWidth <= 400 ? 5 : window.innerWidth <= 767 ? 8 : 12
+    );
+  }, [movies]);
 
   useEffect(() => {
     let resizeTimer;
@@ -18,9 +25,9 @@ export default function MoviesCardList({ isLoading, movies }) {
       // Устанавливаем таймер, чтобы отложить обработку изменения размера окна
       resizeTimer = setTimeout(() => {
         // Определение количества видимых карточек в зависимости от ширины экрана
-        if (window.innerWidth <= 400) {
+        if (window.innerWidth <= 767) {
           setVisibleMovies(5);
-        } else if (window.innerWidth <= 895) {
+        } else if (window.innerWidth <= 1279) {
           setVisibleMovies(8);
         } else {
           setVisibleMovies(12);

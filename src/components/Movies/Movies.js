@@ -25,6 +25,7 @@ export default function Movies({ getUserMovies }) {
   }, []);
 
   useEffect(() => {
+    // Фильтруем фильмы с учетом поисковой строки и состояния чекбокса
     const filtered = moviesList.filter((movie) => {
       const isMatching =
         movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase()) ||

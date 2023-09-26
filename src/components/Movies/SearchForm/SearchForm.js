@@ -16,7 +16,7 @@ export default function SearchForm({
       return;
     }
     setValidationError("");
-    onSearchSubmit(); // Передаем searchQuery в родительский компонент
+    onSearchSubmit(searchQuery); // Передаем searchQuery в родительский компонент
   };
 
   // console.log(validationError);
