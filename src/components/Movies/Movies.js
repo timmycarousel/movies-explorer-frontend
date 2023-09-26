@@ -4,30 +4,27 @@ import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import * as moviesApi from "../../utils/MoviesApi.js";
 
 export default function Movies({ getUserMovies }) {
-  // Состояния компонента
-  const [isLoading, setIsLoading] = useState(false); // Состояние загрузки
-  const [moviesList, setMoviesList] = useState([]); // Список всех фильмов
-  const [filteredMovies, setFilteredMovies] = useState([]); // Отфильтрованный список фильмов
+  const [isLoading, setIsLoading] = useState(false);
+  const [moviesList, setMoviesList] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState(
-    localStorage.getItem("searchQuery") || "" // Строка поиска, восстанавливаем из localStorage
+    localStorage.getItem("searchQuery") || ""
   );
   const [isToggled, setIsToggled] = useState(
-    localStorage.getItem("isToggled") === "true" // Состояние чекбокса "Короткометражки", восстанавливаем из localStorage
+    localStorage.getItem("isToggled") === "true"
   );
-  const [hasSearched, setHasSearched] = useState(false); // Флаг, указывающий, был ли уже произведен поиск
+  const [hasSearched, setHasSearched] = useState(false);
 
   useEffect(() => {
-    getUserMovies(); // Вызываем функцию getUserMovies при загрузке компонента
+    getUserMovies();
   }, []);
 
   useEffect(() => {
-    // Восстанавливаем список фильмов из localStorage при загрузке компонента
     const localMovies = JSON.parse(localStorage.getItem("moviesList")) || [];
     setMoviesList(localMovies);
   }, []);
 
   useEffect(() => {
-    // Фильтруем фильмы с учетом поисковой строки и состояния чекбокса
     const filtered = moviesList.filter((movie) => {
       const isMatching =
         movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -41,44 +38,40 @@ export default function Movies({ getUserMovies }) {
 
     setFilteredMovies(filtered);
 
-    // Сохраняем отфильтрованный список фильмов в localStorage
     localStorage.setItem("filteredMovies", JSON.stringify(filtered));
   }, [searchQuery, isToggled, moviesList]);
 
   const handleSearch = () => {
-    // Выполняем запрос на сервер только при первом поиске
     if (!hasSearched && moviesList.length === 0) {
-      setIsLoading(true); // Устанавливаем isLoading в true перед запросом
+      setIsLoading(true);
 
-      // Запрос на сервер для получения фильмов
       moviesApi
         .getMovies()
         .then((data) => {
-          setMoviesList(data); // Устанавливаем полученный список фильмов
-          setIsLoading(false); // Устанавливаем isLoading в false после завершения запроса
+          setMoviesList(data);
+          setIsLoading(false);
           console.log("получаем фильмы с сервера большого", data);
 
-          // Сохраняем полученный список фильмов в localStorage
           localStorage.setItem("moviesList", JSON.stringify(data));
         })
         .catch((error) => {
           console.error("Ошибка при загрузке фильмов:", error);
-          setIsLoading(false); // Устанавливаем isLoading в false после завершения запроса с ошибкой
+          setIsLoading(false);
         });
     }
 
-    setHasSearched(true); // Устанавливаем флаг hasSearched в true
-    localStorage.setItem("searchQuery", searchQuery); // Сохраняем поисковую строку в localStorage
-    localStorage.setItem("isToggled", isToggled ? "true" : "false"); // Сохраняем состояние чекбокса в localStorage
+    setHasSearched(true);
+    localStorage.setItem("searchQuery", searchQuery);
+    localStorage.setItem("isToggled", isToggled ? "true" : "false");
   };
 
   const handleSearchChange = (evt) => {
     const value = evt.target.value;
-    setSearchQuery(value); // Обновляем состояние searchQuery при изменении строки поиска
+    setSearchQuery(value);
   };
 
   const handleToggle = () => {
-    setIsToggled(!isToggled); // Изменяем состояние чекбокса "Короткометражки"
+    setIsToggled(!isToggled);
   };
 
   return (
