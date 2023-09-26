@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import logo from "../../images/logo.svg";
 import { matches, isEmail } from "validator";
+import { NavLink } from "react-router-dom";
 
 const AuthForm = ({
   isSignUp,
@@ -72,9 +73,9 @@ const AuthForm = ({
   return (
     <section className="auth-page">
       <form onSubmit={handleFormSubmit} className="auth-page__form" noValidate>
-        <a href="/" className="auth-page__logo">
+        <NavLink to="/" className="auth-page__logo">
           <img src={logo} alt="логотип" />
-        </a>
+        </NavLink>
         <h1>{h1Text}</h1>
         <div className="auth-page__groupers">
           {isSignUp && (
@@ -150,11 +151,11 @@ const AuthForm = ({
         </button>
         {isSignUp ? (
           <p>
-            Уже зарегистрированы? <a href="/signin">Войти</a>
+            Уже зарегистрированы? <NavLink to="/signin">Войти</NavLink>
           </p>
         ) : (
           <p>
-            Еще не зарегистрированы? <a href="/signup">Регистрация</a>
+            Еще не зарегистрированы? <NavLink to="/signup">Регистрация</NavLink>
           </p>
         )}
       </form>

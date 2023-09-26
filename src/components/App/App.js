@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import {
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+  Navigate,
+} from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import SavedMovies from "../SavedMovies/SavedMovies";
@@ -8,7 +14,7 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 import Footer from "../Footer/Footer";
 import * as MainApi from "../../utils/MainApi.js";
-// import * as moviesApi from "../../utils/MoviesApi.js";
+import * as moviesApi from "../../utils/MoviesApi.js";
 import Movies from "../Movies/Movies";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 import { CurrentUserContext } from "../../components/contexts/CurrentUserContext";
@@ -18,14 +24,15 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 function App() {
   const location = useLocation();
   const [loggedIn, setLoggedIn] = useState(true);
+  const [showAuthPages, setShowAuthPages] = useState(false); // Состояние для страниц signup и signin
   const showHeaderPaths = ["/", "/movies", "/saved-movies", "/profile"];
   const showFooterPaths = ["/", "/movies", "/saved-movies"];
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
   const [userMovies, setUserMovies] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
-  // const [moviesList, setMoviesList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [moviesList, setMoviesList] = useState([]);
 
   const showHeader = showHeaderPaths.includes(location.pathname);
   const showFooter = showFooterPaths.includes(location.pathname);
@@ -54,6 +61,7 @@ function App() {
         .catch(handleError);
     } else {
       setLoggedIn(false);
+      setShowAuthPages(true); // Если пользователь не авторизован, показываем страницы signup и signin
     }
   }
 
@@ -103,25 +111,30 @@ function App() {
   }
 
   function handleLogout() {
-    setLoggedIn(false);
-    localStorage.clear();
-    navigate("/");
+    MainApi.logout()
+      .then(() => {
+        setLoggedIn(false);
+        localStorage.clear();
+        navigate("/");
+      })
+      .catch(handleError);
   }
-  // function getMovies() {
-  //   return moviesApi
-  //     .getMovies()
-  //     .then((data) => {
-  //       setMoviesList(data);
-  //       setIsLoading(false);
-  //       console.log("получаем фильмы с сервера большого", data);
-  //       return data;
-  //     })
-  //     .catch((error) => {
-  //       console.error("Ошибка при загрузке фильмов:", error);
-  //       setIsLoading(false);
-  //       return Promise.reject(error);
-  //     });
-  // }
+
+  function getMovies() {
+    return moviesApi
+      .getMovies()
+      .then((data) => {
+        setMoviesList(data);
+        setIsLoading(false);
+        console.log("получаем фильмы с сервера большого", data);
+        return data;
+      })
+      .catch((error) => {
+        console.error("Ошибка при загрузке фильмов:", error);
+        setIsLoading(false);
+        return Promise.reject(error);
+      });
+  }
 
   function getUserMovies() {
     MainApi.getMovies()
@@ -139,29 +152,38 @@ function App() {
           {showHeader && <Header loggedIn={loggedIn} />}
           <main className="content">
             <Routes>
-              <Route
-                path="/signup"
-                element={
-                  <Register
-                    handleRegister={handleRegister}
-                    errorMessage={errorMessage}
+              {/* Показываем страницы signup и signin только если showAuthPages равно true */}
+              {showAuthPages && (
+                <>
+                  <Route
+                    path="/signup"
+                    element={
+                      <Register
+                        handleRegister={handleRegister}
+                        errorMessage={errorMessage}
+                      />
+                    }
                   />
-                }
-              />
-              <Route
-                path="/signin"
-                element={
-                  <Login
-                    handleLogin={handleLogin}
-                    errorMessage={errorMessage}
+                  <Route
+                    path="/signin"
+                    element={
+                      <Login
+                        handleLogin={handleLogin}
+                        errorMessage={errorMessage}
+                      />
+                    }
                   />
-                }
-              />
+                </>
+              )}
+
               <Route
                 path="/movies"
                 element={
                   <ProtectedRoute
                     element={Movies}
+                    getMovies={getMovies}
+                    moviesList={moviesList}
+                    isLoading={isLoading}
                     loggedIn={loggedIn}
                     getUserMovies={getUserMovies}
                   />

@@ -1,7 +1,7 @@
 import { movieServer } from "./constants";
 
-// const BASE_URL = "https://api.moviesexplorer.nomoredomainsicu.ru";
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://api.moviesexplorer.nomoredomainsicu.ru";
+// const BASE_URL = "http://localhost:3000";
 
 const jsonHeaders = {
   "Content-Type": "application/json",
@@ -42,15 +42,24 @@ export const authorize = (email, password) => {
     });
 };
 
-export function checkToken() {
-  // Получение токена из локального хранилища
-  const token = localStorage.getItem("token");
+export const logout = () => {
+  return fetch(`${BASE_URL}/signout`, {
+    method: "POST",
+    headers: jsonHeaders,
+    credentials: "include",
+  })
+    .then(checkResponse)
+    .then(() => {
+      localStorage.removeItem("token"); // Удаление токена из локального хранилища
+    });
+};
 
+export function checkToken() {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
       ...jsonHeaders,
-      Authorization: `Bearer ${token}`, // Добавление токена в заголовок запроса для авторизации
+      Authorization: `Bearer ${localStorage.getItem("token")}`, // Добавление токена в заголовок запроса для авторизации
     },
     credentials: "include",
   })
