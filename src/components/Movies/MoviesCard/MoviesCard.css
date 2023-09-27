@@ -12,18 +12,31 @@
   align-items: flex-start;
   text-align: center;
   max-width: 364px;
+  width: 100%;
   height: 281px;
 }
 
-.movie-card img {
+.movie-card-img {
+  width: 339px;
+  height: 190px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.movie-card-img a:hover {
+  opacity: 0.8;
+}
+
+.movie-card-img img {
   width: 100%;
+  height: 100%;
 }
 
 .movie-card__info {
   padding: 0;
   margin-left: 16px;
   margin-right: 16px;
-  margin-top: 8px;
+  margin-top: 22px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,7 +58,6 @@
   text-overflow: ellipsis;
 }
 
-/* Удалите стили для .movie-card__like-button и используйте фоновые изображения */
 .movie-card__like-button {
   width: 26px;
   height: 30px;
@@ -97,22 +109,30 @@
 @media screen and (max-width: 400px) {
   .movie-card {
     max-height: 237px;
+    max-width: 318px;
+  }
+
+  .movie-card-img {
+    max-width: 300px;
+    height: 168px;
   }
 
   .movie-card__title {
     font-size: 12px;
     padding-bottom: 3px;
+    /* max-width: 84%; */
   }
 
   .movie-card__info {
     margin-left: 14px;
-    max-width: 98%;
+    max-width: 94%;
+    margin-top: 7px;
   }
 
   .movie-card__like-button {
     width: 30px;
     height: 30px;
-    margin-right: 18px;
+    margin-right: 10px;
   }
 
   .movie-card__duration {

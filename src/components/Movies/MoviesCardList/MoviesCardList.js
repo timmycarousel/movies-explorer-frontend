@@ -1,52 +1,78 @@
 import React, { useState, useEffect } from "react";
-import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../../Preloader/Preloader";
+import { renderMovies } from "../../../utils/movieUtils";
+import {
+  MOBILE_MAX_WIDTH,
+  TABLET_MAX_WIDTH,
+  MOBILE_VISIBLE_MOVIES,
+  TABLET_VISIBLE_MOVIES,
+  DESKTOP_VISIBLE_MOVIES,
+  MOBILE_MIN_WITH,
+} from "../../../utils/constants";
 
-export default function MoviesCardList({ movies }) {
+export default function MoviesCardList({ isLoading, movies, isMoviesPage }) {
   const [visibleMovies, setVisibleMovies] = useState(
-    window.innerWidth <= 400 ? 5 : window.innerWidth <= 895 ? 8 : 12
+    isMoviesPage
+      ? window.innerWidth <= MOBILE_MAX_WIDTH
+        ? MOBILE_VISIBLE_MOVIES
+        : window.innerWidth <= TABLET_MAX_WIDTH
+        ? TABLET_VISIBLE_MOVIES
+        : DESKTOP_VISIBLE_MOVIES
+      : movies.length
   );
-  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
+    if (!isMoviesPage) {
+      setVisibleMovies(movies.length);
+    }
+  }, [movies, isMoviesPage]);
+
+  useEffect(() => {
+    let resizeTimer;
+
     const handleResize = () => {
-      if (window.innerWidth <= 400) {
-        setVisibleMovies(5);
-      } else if (window.innerWidth <= 895) {
-        setVisibleMovies(8);
-      } else {
-        setVisibleMovies(12);
-      }
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (isMoviesPage) {
+          setVisibleMovies(
+            window.innerWidth <= MOBILE_MAX_WIDTH
+              ? MOBILE_VISIBLE_MOVIES
+              : window.innerWidth <= TABLET_MAX_WIDTH
+              ? TABLET_VISIBLE_MOVIES
+              : DESKTOP_VISIBLE_MOVIES
+          );
+        } else {
+          setVisibleMovies(movies.length);
+        }
+      }, 1000);
     };
 
     handleResize();
     window.addEventListener("resize", handleResize);
 
-    // Эмуляция задержки загрузки данных
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [isMoviesPage, movies]);
 
   const handleShowMore = () => {
-    setVisibleMovies(visibleMovies + 12);
+    let cardsToAdd = 0;
+
+    if (window.innerWidth >= TABLET_MAX_WIDTH) {
+      cardsToAdd = 3 - (visibleMovies % 3);
+    } else if (window.innerWidth >= MOBILE_MAX_WIDTH) {
+      cardsToAdd = 2 - (visibleMovies % 2);
+    } else if (window.innerWidth >= MOBILE_MIN_WITH) {
+      cardsToAdd = 2;
+    }
+
+    setVisibleMovies(visibleMovies + cardsToAdd);
   };
 
   return (
     <section className="movies-card-list">
-      {isLoading ? (
-        <Preloader />
-      ) : (
-        <div className="movies-card-list__container">
-          {movies.slice(0, visibleMovies).map((movie, index) => (
-            <MoviesCard key={index} movie={movie}></MoviesCard>
-          ))}
-        </div>
-      )}
-      {visibleMovies < movies.length && (
+      {isLoading ? <Preloader /> : renderMovies(movies.slice(0, visibleMovies))}
+      {isMoviesPage && visibleMovies < movies.length && (
         <button
           className="movies-card-list__button"
           onClick={handleShowMore}

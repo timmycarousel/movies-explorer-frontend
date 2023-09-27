@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import AuthForm from "../AuthForm/AuthForm";
 
-function Login() {
+function Login({ handleLogin, errorMessage }) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const { email, password } = formData;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -17,12 +19,13 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // логика для входа
+    handleLogin(email, password);
   };
 
   return (
     <section>
       <AuthForm
+        errorMessage={errorMessage}
         isSignUp={false}
         handleSubmit={handleSubmit}
         handleInputChange={handleInputChange}

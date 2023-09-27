@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import accountIcon from "../../images/account-icon.svg";
 import accountIconIn from "../../images/account-icon-in.svg";
-import { useLocation } from "react-router-dom";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
-function Header({ isLoggedIn }) {
-  isLoggedIn = true;
+function Header({ loggedIn }) {
   const url = useLocation();
   const isHomepage = url.pathname === "/";
   const headerClass =
@@ -14,49 +13,49 @@ function Header({ isLoggedIn }) {
     url.pathname === "/saved-movies" ||
     url.pathname === "/profile";
 
-  const accountIconSrc = isLoggedIn && isHomepage ? accountIconIn : accountIcon;
+  const accountIconSrc = loggedIn && isHomepage ? accountIconIn : accountIcon;
 
   return (
     <header className={`header ${headerClass ? "header_login" : ""}`}>
       <div className="header__container">
         <div className="header__left">
-          <a className="header__link" href="/">
+          <Link to="/" className="header__link">
             <img src={logo} alt="Логотип" className="header__logo" />
-          </a>
-          {isLoggedIn && headerClass && (
+          </Link>
+          {loggedIn && (
             <>
-              <a className="header__btn header__btn_movies" href="/movies">
+              <Link to="/movies" className="header__btn header__btn_movies">
                 Фильмы
-              </a>
-              <a
+              </Link>
+              <Link
+                to="/saved-movies"
                 className="header__btn header__btn_saved-movies"
-                href="/saved-movies"
               >
                 Сохраненные фильмы
-              </a>
+              </Link>
             </>
           )}
         </div>
         <nav className="header__nav">
-          {isLoggedIn ? (
+          {loggedIn ? (
             <>
-              <a className="header__account" href="/profile">
+              <Link to="/profile" className="header__account">
                 <img
                   src={accountIconSrc}
                   alt="Аккаунт"
                   className="header__account-icon"
                 />
-              </a>
+              </Link>
               <BurgerMenu />{" "}
             </>
           ) : (
             <>
-              <a className="header__btn header__btn_register" href="/signup">
+              <Link to="/signup" className="header__btn header__btn_register">
                 Регистрация
-              </a>
-              <a className="header__btn header__btn_login" href="/signin">
+              </Link>
+              <Link to="/signin" className="header__btn header__btn_login">
                 Войти
-              </a>
+              </Link>
             </>
           )}
         </nav>
