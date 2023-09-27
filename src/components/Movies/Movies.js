@@ -85,7 +85,9 @@ export default function Movies({ getUserMovies }) {
   };
 
   const handleToggle = () => {
-    setIsToggled(!isToggled);
+    const updatedIsToggled = !isToggled;
+    setIsToggled(updatedIsToggled);
+    localStorage.setItem("isToggled", updatedIsToggled ? "true" : "false");
   };
 
   return (
