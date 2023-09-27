@@ -61,6 +61,7 @@ function App() {
         .catch(handleError);
     } else {
       setLoggedIn(false);
+      handleLogout();
       setShowAuthPages(true); // Если пользователь не авторизован, показываем страницы signup и signin
     }
   }
@@ -115,7 +116,6 @@ function App() {
       .then(() => {
         setLoggedIn(false);
         localStorage.clear();
-        navigate("/");
       })
       .catch(handleError);
   }

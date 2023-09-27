@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import SearchForm from "./SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import * as moviesApi from "../../utils/MoviesApi.js";
+import { SHORT_FILM_DURATION } from "../../utils/constants";
 
 export default function Movies({ getUserMovies }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -40,7 +41,7 @@ export default function Movies({ getUserMovies }) {
             .toLowerCase()
             .includes(searchQueryAfterSubmit.toLowerCase());
         if (isToggled) {
-          return isMatching && movie.duration < 35;
+          return isMatching && movie.duration < SHORT_FILM_DURATION;
         } else {
           return isMatching;
         }

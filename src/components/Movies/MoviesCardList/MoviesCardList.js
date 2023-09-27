@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from "react";
 import Preloader from "../../Preloader/Preloader";
 import { renderMovies } from "../../../utils/movieUtils";
+import {
+  MOBILE_MAX_WIDTH,
+  TABLET_MAX_WIDTH,
+  MOBILE_VISIBLE_MOVIES,
+  TABLET_VISIBLE_MOVIES,
+  DESKTOP_VISIBLE_MOVIES,
+  MOBILE_MIN_WITH,
+} from "../../../utils/constants";
 
 export default function MoviesCardList({ isLoading, movies, isMoviesPage }) {
   const [visibleMovies, setVisibleMovies] = useState(
     isMoviesPage
-      ? window.innerWidth <= 767
-        ? 5
-        : window.innerWidth <= 1279
-        ? 8
-        : 12
+      ? window.innerWidth <= MOBILE_MAX_WIDTH
+        ? MOBILE_VISIBLE_MOVIES
+        : window.innerWidth <= TABLET_MAX_WIDTH
+        ? TABLET_VISIBLE_MOVIES
+        : DESKTOP_VISIBLE_MOVIES
       : movies.length
   );
 
@@ -27,7 +35,11 @@ export default function MoviesCardList({ isLoading, movies, isMoviesPage }) {
       resizeTimer = setTimeout(() => {
         if (isMoviesPage) {
           setVisibleMovies(
-            window.innerWidth <= 767 ? 5 : window.innerWidth <= 1279 ? 8 : 12
+            window.innerWidth <= MOBILE_MAX_WIDTH
+              ? MOBILE_VISIBLE_MOVIES
+              : window.innerWidth <= TABLET_MAX_WIDTH
+              ? TABLET_VISIBLE_MOVIES
+              : DESKTOP_VISIBLE_MOVIES
           );
         } else {
           setVisibleMovies(movies.length);
@@ -46,11 +58,11 @@ export default function MoviesCardList({ isLoading, movies, isMoviesPage }) {
   const handleShowMore = () => {
     let cardsToAdd = 0;
 
-    if (window.innerWidth >= 1280) {
+    if (window.innerWidth >= TABLET_MAX_WIDTH) {
       cardsToAdd = 3 - (visibleMovies % 3);
-    } else if (window.innerWidth >= 768) {
+    } else if (window.innerWidth >= MOBILE_MAX_WIDTH) {
       cardsToAdd = 2 - (visibleMovies % 2);
-    } else if (window.innerWidth >= 320) {
+    } else if (window.innerWidth >= MOBILE_MIN_WITH) {
       cardsToAdd = 2;
     }
 
