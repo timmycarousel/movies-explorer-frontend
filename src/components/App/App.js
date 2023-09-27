@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
-  Navigate,
-} from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import SavedMovies from "../SavedMovies/SavedMovies";
@@ -94,6 +88,7 @@ function App() {
       .then((data) => {
         localStorage.setItem("token", data.token);
         setLoggedIn(true);
+        setErrorMessage("");
         navigate("/movies");
 
         getUserData();
@@ -115,6 +110,7 @@ function App() {
     MainApi.logout()
       .then(() => {
         setLoggedIn(false);
+        setShowAuthPages(true);
         localStorage.clear();
       })
       .catch(handleError);
@@ -156,6 +152,7 @@ function App() {
               {showAuthPages && (
                 <>
                   <Route
+                    exact
                     path="/signup"
                     element={
                       <Register
@@ -165,6 +162,7 @@ function App() {
                     }
                   />
                   <Route
+                    exact
                     path="/signin"
                     element={
                       <Login
@@ -200,6 +198,7 @@ function App() {
                 }
               />
               <Route
+                exact
                 path="/profile"
                 element={
                   <ProtectedRoute
@@ -212,7 +211,7 @@ function App() {
                 }
               />
               <Route path="*" element={<NotFoundPage />} />
-              <Route path="/" element={<Main />} />
+              <Route exact path="/" element={<Main />} />
             </Routes>
           </main>
           {showFooter && <Footer />}

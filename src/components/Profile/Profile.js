@@ -52,10 +52,11 @@ export default function Profile({ onLogOut, save, errorMessage }) {
     }
 
     setIsFormValid(true);
-
     save({ name, email });
     setIsProfileSaved(true);
-    setProfileSavedMessage("Профиль успешно сохранен");
+    if (!errorMessage) {
+      setProfileSavedMessage("Профиль успешно сохранен");
+    }
   };
 
   const validateName = (name) => {
@@ -113,7 +114,7 @@ export default function Profile({ onLogOut, save, errorMessage }) {
         {emailError && <div className="profile__error">{emailError}</div>}
 
         {errorMessage && <div className="profile__error">{errorMessage}</div>}
-        {isProfileSaved && (
+        {!errorMessage && isProfileSaved && (
           <div className="profile__success-message">{profileSavedMessage}</div>
         )}
 
