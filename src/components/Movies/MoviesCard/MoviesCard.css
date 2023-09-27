@@ -109,6 +109,7 @@
 @media screen and (max-width: 400px) {
   .movie-card {
     max-height: 237px;
+    max-width: 318px;
   }
 
   .movie-card-img {
@@ -119,18 +120,19 @@
   .movie-card__title {
     font-size: 12px;
     padding-bottom: 3px;
+    /* max-width: 84%; */
   }
 
   .movie-card__info {
     margin-left: 14px;
-    max-width: 98%;
+    max-width: 94%;
     margin-top: 7px;
   }
 
   .movie-card__like-button {
     width: 30px;
     height: 30px;
-    margin-right: 18px;
+    margin-right: 10px;
   }
 
   .movie-card__duration {

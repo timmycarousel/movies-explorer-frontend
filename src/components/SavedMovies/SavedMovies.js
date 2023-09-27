@@ -15,34 +15,27 @@ export default function SavedMovies({ getMovies }) {
   }, []);
 
   useEffect(() => {
-    setFilteredMovies(userMovies);
-  }, [userMovies]);
-
-  useEffect(() => {
-    if (hasSearched) {
-      handleSearchMovies();
-    }
-  }, [searchQuery, isToggledMovies, hasSearched]);
+    handleSearchMovies();
+  }, [userMovies, isToggledMovies, searchQuery]);
 
   function handleSearchMovies() {
     const filtered = filterMovies(userMovies, isToggledMovies, searchQuery);
-
     setFilteredMovies(filtered);
   }
 
-  const filterMovies = () => {
-    let filtered = userMovies;
+  const filterMovies = (movies, isToggled, query) => {
+    let filtered = movies;
 
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
+    if (query) {
+      const lowercaseQuery = query.toLowerCase();
       filtered = filtered.filter(
         (movie) =>
-          movie.nameRU.toLowerCase().includes(query.toLowerCase()) ||
-          movie.nameEN.toLowerCase().includes(query.toLowerCase())
+          movie.nameRU.toLowerCase().includes(lowercaseQuery) ||
+          movie.nameEN.toLowerCase().includes(lowercaseQuery)
       );
     }
 
-    if (isToggledMovies) {
+    if (isToggled) {
       filtered = filtered.filter((movie) => movie.duration < 35);
     }
 

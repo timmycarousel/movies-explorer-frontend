@@ -5,9 +5,9 @@ import { renderMovies } from "../../../utils/movieUtils";
 export default function MoviesCardList({ isLoading, movies, isMoviesPage }) {
   const [visibleMovies, setVisibleMovies] = useState(
     isMoviesPage
-      ? window.innerWidth <= 400
+      ? window.innerWidth <= 767
         ? 5
-        : window.innerWidth <= 767
+        : window.innerWidth <= 1279
         ? 8
         : 12
       : movies.length
@@ -27,7 +27,7 @@ export default function MoviesCardList({ isLoading, movies, isMoviesPage }) {
       resizeTimer = setTimeout(() => {
         if (isMoviesPage) {
           setVisibleMovies(
-            window.innerWidth <= 400 ? 5 : window.innerWidth <= 767 ? 8 : 12
+            window.innerWidth <= 767 ? 5 : window.innerWidth <= 1279 ? 8 : 12
           );
         } else {
           setVisibleMovies(movies.length);
@@ -48,10 +48,10 @@ export default function MoviesCardList({ isLoading, movies, isMoviesPage }) {
 
     if (window.innerWidth >= 1280) {
       cardsToAdd = 3 - (visibleMovies % 3);
-    } else if (window.innerWidth >= 895) {
+    } else if (window.innerWidth >= 768) {
       cardsToAdd = 2 - (visibleMovies % 2);
     } else if (window.innerWidth >= 320) {
-      cardsToAdd = 2 - (visibleMovies % 2);
+      cardsToAdd = 2;
     }
 
     setVisibleMovies(visibleMovies + cardsToAdd);
