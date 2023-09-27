@@ -1,7 +1,16 @@
-// Techs.js
 import React from "react";
 
-function Techs() {
+const techsList = [
+  "HTML",
+  "CSS",
+  "JS",
+  "React",
+  "Git",
+  "Express.js",
+  "mongoDB",
+];
+
+export default function Techs() {
   return (
     <section className="tech" id="Techs">
       <div className="tech__container">
@@ -17,18 +26,14 @@ function Techs() {
         </div>
         <div className="tech__list">
           <ul className="tech__list-block">
-            <li className="tech__list-item">HTML</li>
-            <li className="tech__list-item">CSS</li>
-            <li className="tech__list-item">JS</li>
-            <li className="tech__list-item">React</li>
-            <li className="tech__list-item">Git</li>
-            <li className="tech__list-item">Express.js</li>
-            <li className="tech__list-item">mongoDB</li>
+            {techsList.map((tech, index) => (
+              <li key={index} className="tech__list-item">
+                {tech}
+              </li>
+            ))}
           </ul>
         </div>
       </div>
     </section>
   );
 }
-
-export default Techs;
